@@ -1,0 +1,51 @@
+{
+	"user": {
+	
+		"home": [
+			{
+				"title": "deed",
+				"id": "fdsjklwe",
+				"weigth": 0,
+				"notes": [
+					{
+						"text": "note-1", "isCompleted": true, "id": "fdsasdfa", "date": 1485332082505, "weight": 0, "category": "home", "block:": "deed"
+					},
+					{
+						"text": "note-14", "isCompleted": false, "id": "fdsasdfdssa", "date": 1485419522497, "weight": 0, "category": "home", "block:": "deed"
+					},
+					{
+						"text": "note-2", "isCompleted": false, "id": "asssss", "date": 1485332082028, "weight": 1, "category": "home", "block:": "deed"
+					}
+				]
+			},
+			{
+				"title": "movie",
+				"id": "sdfdsas",
+				"notes": [
+					{
+						"text": "home alone", "isCompleted": true, "id": "fdsaf", "date": 1485332082505, "weight": 0, "category": "home", "block:": "movie"
+					},
+					{
+						"text": "aliens", "isCompleted": false, "id": "fffdfds", "date": 1485336092028, "weight": 1, "category": "home", "block:": "movie"
+					}
+				]
+			}
+		],
+		"work": [
+			{
+				"title": "scripts",
+				"id": "ytrerty",
+				"notes": [
+					{
+						"text": "js", "isCompleted": false, "id": "32", "date": 1485337082505, "weight": 0, "category": "work", "block:": "scripts"
+					},
+					{
+						"text": "ang", "isCompleted": false, "id": "34234dfs", "date": 1485419580787, "weight": 1, "category": "work", "block:": "scripts"
+					}
+				]
+			}
+		],
+		"other": []
+	}
+	
+}

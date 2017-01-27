@@ -1,0 +1,33 @@
+
+//%title-main {
+//  font-family: $font-family-bold;
+//  font-size:   $font-size-regular-big;
+//  line-height: $font-size-regular-big + 2;
+//  color: map-get($clrs, grey);
+//}
+
+// links
+.dashed {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  span {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 0;
+      border-bottom: 1px dashed;
+      border-color: inherit;
+    }
+  }
+}
+
+
