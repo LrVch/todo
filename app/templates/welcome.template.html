@@ -5,7 +5,6 @@
 			<ul class="list-group">
 			  <li class="list-group-item" ng-repeat="note in filtered = (allNotes | isToday)">
 			  	<div><a ui-sref="category({categoryId: note.category })" class="label label-default">{{ note.category }}</a> <small>{{ note.date | date }}</small></div>
-			  	<div>{{ note.text }}</div>
 			  </li>
 			</ul>
 		</div>

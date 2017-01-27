@@ -46,10 +46,7 @@ angular.module('todoList', ['core', 'templates', 'ui.router'])
 		const data = {};
 		const deferred = $q.defer();
 
-        // function fetchNotes() {
-        // 	return new Promise((resolve, reject) => {
-
-        // 	})
+        function fetchNotes() {
         	Notes.get({}, function (notes) {
         		if(notes) {
         			data.notes = getDataFromLocalStorage() || notes.user;
