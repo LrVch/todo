@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="todoList">
     <head>
+        <base href="/">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>todo list</title>
@@ -15,36 +16,8 @@
         <link rel="stylesheet" href="css/style.css">
         <!-- endbuild -->
     </head>
+    <!-- <body> -->
     <body>
-    <!-- <body ng-controller="todoListController"> -->
-        <div class="header" ng-controller="CategoryController">
-            <div class="container">
-                <a ui-sref="/">
-                    <img src="http://vignette2.wikia.nocookie.net/transformers/images/b/bc/Autobot_logo.svg/revision/latest?cb=20130503211304"
-                    width="80" height="80">
-                </a>
-                <form>
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button" ng-click="addCatetory()">Add Category</button>
-                        </span>
-                        <input type="text" class="form-control" placeholder="category name" ng-model="categoryName">
-                    </div>
-                </form>
-                <br>
-                <div class="dropdown">
-                    <button ng-disabled="disableDropDown" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    Categories
-                    <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li ng-repeat="category in categories"><a ui-sref="category({categoryId: category })">{{ category }}</a></li>
-                    </ul>
-                </div>
-                <a ui-sref="all-categories">View all categories</a>
-            </div>
-        </div>
-
         <div ui-view></div>
 
 
@@ -61,7 +34,7 @@
         <!-- endbuild -->
         <!-- build:js js/script.min.js -->
         <script src="templates.module.js"></script>
-        <script src="templates/templates.js"></script>
+        <!-- <script src="templates/templates.js"></script> -->
         <script src="core/core.module.js"></script>
         <script src="core/filters/filters.module.js"></script>
         <script src="core/notes/notes.module.js"></script>
@@ -69,15 +42,11 @@
         <script src="app.module.js"></script>
         <script src="app.config.js"></script>
         <script src="controllers/todoListController.js"></script>
-        <script src="controllers/CategoryController.js"></script>
+        <!-- <script src="controllers/categoryController.js"></script> -->
         <script src="controllers/allCategoriesController.js"></script>
         <script src="controllers/oneCategoryController.js"></script>
-        <script src="controllers/welcomeController.js"></script>
-        <!-- <script src="core/photo/photo.module.js"></script> -->
-        <!-- <script src="core/photo/photo.service.js"></script> -->
-        <!-- <script src="images/images.directive.js"></script>
-        <script src="addsection/addsection.directive.js"></script>
-        <script src="popup/popup.directive.js"></script> -->
+        <script src="controllers/recentController.js"></script>
+        <script src="directives/categories.directive.js"></script>
         <!-- endbuild -->
     </body>
 </html>

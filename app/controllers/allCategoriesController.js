@@ -1,10 +1,15 @@
-"use strict";
+(function() {
+'use strict';
 
-angular.module('todoList')
-    .controller('AllCategoriesController', ['$scope', function ($scope) {
-    	$scope.test = "all categories for ever";
+	angular
+	.module('todoList')
+	.controller('AllCategoriesController', AllCategoriesController);
+
+	AllCategoriesController.$inject = ['$scope'];
+
+	function AllCategoriesController($scope) {
+	  	$scope.test = "Все категории";
 
     	console.log('AllCategoriesController')
-
-        
-    }]);
+	};
+}());

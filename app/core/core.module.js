@@ -1,5 +1,4 @@
+(function() {
 'use strict';
-
-// Define the `core` module
-// angular.module('core', ['core.photo']);
-angular.module('core', ['core.filters', 'core.notes']);
+	angular.module('core', ['core.filters', 'core.notes']);
+}());

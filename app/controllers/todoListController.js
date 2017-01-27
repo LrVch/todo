@@ -1,25 +1,23 @@
-// "use strict";
+(function() {
+'use strict';
 
-// angular.module('todoList')
-//     .controller('todoListController', ['$scope', 'DataService', function ($scope, DataService) {
+	angular
+	.module('todoList')
+	.controller('TodoListController', TodoListController);
 
-//     	console.log('todoListController')
-//     	const notes = DataService.getNotes();
+	TodoListController.$inject = ['$scope', 'fetchNotes'];
 
-//     	console.log(DataService.getNotes())
-//     	// const categories = Object.keys(notes);
-//     	// const allNotes = categories.reduce(function(arr, notes) {
-//     	// 	return arr;
-//     	// }, [])
-//     	// console.log(categories)
-//     	// console.log(notes)
-//     	// const lastModified = 
-//     	// console.log(GetNotes.notes)
+	function TodoListController($scope, fetchNotes) {
+	  	console.log('TodoListController');
+	  	const fetchedNotes = fetchNotes;
+	  	$scope.fetchedNotes = fetchedNotes;
+	  	$scope.categories = Object.keys(fetchedNotes.data.user);
 
-//     	// Notes.get({}, function (notes) {
-//      //        $scope.categories = Object.keys(notes)
+	  	console.log($scope.categories);
 
-//      //        // console.log($scope.categories)
-//      //    });
-        
-//     }]);
+	  	$scope.$on('REMOVE_CATEGORY', function(response) {
+		    $scope.categories = Object.keys(fetchedNotes.data.user);
+
+		});
+	};
+}());

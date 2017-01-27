@@ -1,10 +1,15 @@
 <div class="container">
+	<h2>Недавние</h2>
 	<div class="row">
 		<div class="col-sm-12">
 		<h2>{{ today }}</h2>
 			<ul class="list-group">
 			  <li class="list-group-item" ng-repeat="note in filtered = (allNotes | isToday)">
-			  	<div><a ui-sref="category({categoryId: note.category })" class="label label-default">{{ note.category }}</a> <small>{{ note.date | date }}</small></div>
+			  	<div>
+			  		<a ui-sref="^.category({categoryId: note.category })" class="label label-default">{{ note.category }}</a> 
+			  		<small>{{ note.date | date }}</small>
+			  		</div>
+			  		{{ note.text }}
 			  </li>
 			</ul>
 		</div>
