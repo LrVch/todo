@@ -1,54 +1,8 @@
+
 <div class="main">
+{{ oneCategory | json }}
 	<div class="container">
 		<h2 ng-click="removeCategory(activeCategory)">{{ activeCategory }} </h2>
-		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="board in boards">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div>
-							<a href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
-						</div>
-						{{ board.title }}
-					</div>
-					<div class="panel-body">
-						<ul class="list-group">
-							<li class="list-group-item" ng-repeat="note in filtered = (board.notes | isCompleted: false)">
-								<div>
-									<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true"></a>
-									<a href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
-								</div>
-								<a href="#" class="glyphicon glyphicon-ok" aria-hidden="true"></a>
-								{{ note.text }}
-							</li>
-						</ul>
-						<ul class="list-group completed" >
-							<li class="list-group-item" style="text-decoration: line-through;" ng-repeat="note in filtered = (board.notes | isCompleted: true)">
-								<div>
-									<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true"></a>
-								</div>
-								{{ note.text }}
-							</li>
-						</ul>
-					</div>
-					<div class="panel-footer">
-						<div class="input-group">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-							</span>
-							<input type="text" class="form-control" placeholder="add note">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- add board button -->
-			<div class="col-xs-12 col-sm-4 col-md-3">
-				<div ng-class="showAddButton ? 'add-block-button' : 'add-block-button invisible'">
-					<button type="button" class="btn btn-default btn-lg">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
-					</button>
-				</div>
-			</div>
-			<!-- end add board button -->
-		</div>
+		<category></category>
 	</div>
 </div>

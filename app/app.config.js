@@ -31,7 +31,7 @@
             .state('app.category', {
 			    url: '/category/:categoryId',
 			    templateUrl: 'templates/oneCategory.template.html',
-			    controller: 'OneCategoryController'
+			    controller: 'OneCategoryController as oneCategory'
 		    });
 
 

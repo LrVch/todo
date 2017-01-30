@@ -10,13 +10,16 @@
 	function TodoListController($scope, fetchNotes) {
 	  	console.log('TodoListController');
 	  	const fetchedNotes = fetchNotes;
-	  	$scope.fetchedNotes = fetchedNotes;
-	  	$scope.categories = Object.keys(fetchedNotes.data.user);
 
-	  	console.log($scope.categories);
+	  	const vm = this;
+	  	vm.fetchedNotes = fetchedNotes;
+	  	vm.categories = Object.keys(fetchedNotes.data.user);
 
-	  	$scope.$on('REMOVE_CATEGORY', function(response) {
-		    $scope.categories = Object.keys(fetchedNotes.data.user);
+	  	// console.log($scope.categories);
+
+	  	$scope.$on('REMOVE_CATEGORY', function(e, data) {
+	  		console.log(data)
+		    vm.categories = Object.keys(fetchedNotes.data.user);
 
 		});
 	};

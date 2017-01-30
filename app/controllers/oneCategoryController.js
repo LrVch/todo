@@ -10,11 +10,14 @@
     function OneCategoryController($scope, $stateParams, DataService, $state, fetchNotes, $rootScope) {
         console.log('OneCategoryController');
 
+        $scope.test = "test";
+
         const activeCategory = $stateParams.categoryId;
-        console.log(activeCategory);
+        // console.log(activeCategory);
         const fetchedNotes = fetchNotes;
+        $scope.fetchedNotes = fetchedNotes;
         const notes = fetchedNotes.data.user;
-        console.log('notes in one controller', notes);
+        // console.log('notes in one controller', notes);
 
         if (activeCategory in notes) {
             $scope.activeCategory = activeCategory;
@@ -39,12 +42,14 @@
                 $scope.boards = [];
                 $scope.showAddButton = false;
             }
+
+            console.log(fetchNotes)
             
             DataService.saveDataToLocalStorage(fetchNotes);
 
             console.log('notes after removeCategory', notes);
 
-            $rootScope.$broadcast('REMOVE_CATEGORY');
+            $scope.$parent.$broadcast('REMOVE_CATEGORY', 'data');
         }
     };
 }());

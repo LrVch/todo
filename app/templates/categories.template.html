@@ -1,5 +1,5 @@
 <div class="header">
-{{ categories | json}}
+{{ todos.categories | json}}
 	<div class="container">
 		<a ui-sref=".recent">
 			<img src="http://vignette2.wikia.nocookie.net/transformers/images/b/bc/Autobot_logo.svg/revision/latest?cb=20130503211304"
@@ -15,12 +15,12 @@
 		</form>
 		<br>
 		<div class="dropdown">
-			<button ng-disabled="categories.length ? false : true" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			<button ng-disabled="todos.categories.length ? false : true" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			Categories
 			<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li ng-repeat="category in categories">
+				<li ng-repeat="category in todos.categories">
 					<a ui-sref=".category({categoryId: category })">{{ category }}</a>
 				</li>
 			</ul>
