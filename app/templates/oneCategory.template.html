@@ -1,6 +1,17 @@
 <div class="main">
 	<div class="container">
 		<h2 ng-click="removeCategory(oneCategory.activeCategory)">{{ oneCategory.activeCategory }} </h2>
-		<category></category>
+		<div class="input-group">
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button">add note!</button>
+			</span>
+			<input type="text" class="form-control" placeholder="Search for...">
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="board in oneCategory.boards track by $index">
+				<one-note note="board"></one-note>
+			</div>
+		</div>
 	</div>
 </div>

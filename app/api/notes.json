@@ -6,29 +6,30 @@
 				"title": "deed",
 				"id": "fdsjklwe",
 				"weigth": 0,
-				"notes": [
-					{
-						"text": "note-1", "isCompleted": true, "id": "fdsasdfa", "date": 1485504177084, "weight": 0, "category": "home", "block:": "deed"
-					},
-					{
-						"text": "note-14", "isCompleted": false, "id": "fdsasdfdssa", "date": 1485419522497, "weight": 0, "category": "home", "block:": "deed"
-					},
-					{
-						"text": "note-2", "isCompleted": false, "id": "asssss", "date": 1485332082028, "weight": 1, "category": "home", "block:": "deed"
-					}
-				]
+				"notes": "Hello I'm a new note,\ncan you edit me?",
+				"plainText": "true",
+				"section": "home"
 			},
 			{
 				"title": "movie",
 				"id": "sdfdsas",
 				"notes": [
 					{
-						"text": "home alone", "isCompleted": true, "id": "fdsaf", "date": 1485332082505, "weight": 0, "category": "home", "block:": "movie"
+						"text": "first item",
+						"isCompleted": false
 					},
 					{
-						"text": "aliens", "isCompleted": false, "id": "fffdfds", "date": 1485336092028, "weight": 1, "category": "home", "block:": "movie"
+						"text": "second item",
+						"isCompleted": false
 					}
-				]
+					,
+					{
+						"text": "third item",
+						"isCompleted": true
+					}
+				],
+				"plainText": false,
+				"section": "home"
 			}
 		],
 		"work": [

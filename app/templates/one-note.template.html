@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div>
+			<a ng-click="editTitle($event, oneCategory.activeCategory, note.id)" href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
+		</div>
+		<div class="board-title">
+			<textarea class="board-title__area" hidden></textarea>
+			<div class="board-title">{{ note.title }}</div>
+		</div>
+		
+	</div>
+	<div class="panel-body">
+		<div class="content">
+			<!-- {{note | json}} -->
+			<plain-text note="note" ng-show="!isChecked"></plain-text>
+			<list-of-tasks note="note" ng-show="isChecked"></list-of-tasks>
+		</div>
+	</div>
+	<div class="panel-footer">
+		
+		<input type="checkbox" ng-model="isChecked" ng-checked="!plainText">
+		{{ !plainText ? "список" : "текст" }}
+	</div>
+</div>
