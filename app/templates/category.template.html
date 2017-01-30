@@ -1,9 +1,10 @@
 <div class="row">
-	<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="board in boards track by $index">
+	<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="board in oneCategory.boards track by $index">
+	<!-- вынести в отделую директиву -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div>
-					<a ng-click="editTitle($event, activeCategory, board.id)" href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
+					<a ng-click="editTitle($event, oneCategory.activeCategory, board.id)" href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
 				</div>
 				<div class="board-title">
 					<textarea class="board-title__area" hidden></textarea>
@@ -41,10 +42,11 @@
 			</div>
 		</div>
 	</div>
+	<!-- => вынести в отделую директиву -->
 	<!-- add board button -->
 	<div class="col-xs-12 col-sm-4 col-md-3">
-		<div ng-class="showAddButton ? 'add-block-button' : 'add-block-button invisible'">
-			<button type="button" class="btn btn-default btn-lg" ng-click="addBoard(activeCategory)">
+		<div ng-class="oneCategory.showAddButton ? 'add-block-button' : 'add-block-button invisible'">
+			<button type="button" class="btn btn-default btn-lg" ng-click="addBoard(oneCategory.activeCategory)">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
 			</button>
 		</div>

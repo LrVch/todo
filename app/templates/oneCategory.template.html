@@ -1,8 +1,6 @@
-
 <div class="main">
-{{ oneCategory | json }}
 	<div class="container">
-		<h2 ng-click="removeCategory(activeCategory)">{{ activeCategory }} </h2>
+		<h2 ng-click="removeCategory(oneCategory.activeCategory)">{{ oneCategory.activeCategory }} </h2>
 		<category></category>
 	</div>
 </div>

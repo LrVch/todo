@@ -17,9 +17,9 @@
                 $scope.addBoard = function addBoard(activeCategory) {
                 	// console.log("addBoard to ", activeCategory);
 
-                	const fetchedNotes = $scope.fetchedNotes;
-                	// console.log(fetchedNotes);
-                	const notes = fetchedNotes.data.user;
+                	const fetchedNotes = $scope.oneCategory.fetchedNotes;
+                    const notes = fetchedNotes.data.user;
+                	console.log(activeCategory);
 
                 	notes[activeCategory].push({
                 		"title": "title",
