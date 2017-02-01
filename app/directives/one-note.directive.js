@@ -22,6 +22,11 @@
                 scope.plainText = scope.note.plainText;
                 scope.isChecked = !scope.plainText;
 
+                if (scope.isChecked) {
+                    scope.isNotes = scope.note.notes.length && scope.isChecked;
+                    scope.isCompleted = isCompleted(scope.note.notes) && scope.isChecked;
+                }
+
                 let timerId;
 
                 scope.deleteNote = function($event, id) {
@@ -86,22 +91,21 @@
 
                 scope.saveNoteInfo = saveNoteInfo;
 
-                function saveNoteInfo() {
-                    scope.note.time = Date.now();
-                    scope.note.section = scope.activeSection;
+                scope.deleteAll = function() {
+                    scope.note.notes = [];
+                    saveNoteInfo();
+                }
 
-                    if (scope.titleNote) {
-                        scope.note.title = scope.titleNote;
-                        
-                    }
-
-                    scope.callbackFn();
+                scope.deleteChecked = function() {
+                    scope.note.notes = deleteCompleted(scope.note.notes);
+                    saveNoteInfo();
                 }
 
                 scope.changeView = function() {
                     if (scope.isChecked) {
                         scope.note.notes = toList(scope.note.notes);
                         scope.note.plainText = false;
+                        scope.isNotes = scope.note.notes.length;
                     } else {
                         if ( isCompleted(scope.note.notes) ) {
                             const confirmarion = confirm("Удалить завершенные?");
@@ -114,15 +118,44 @@
                             }
 
                             scope.note.plainText = true;
+                            scope.isCompleted = false;
+                            console.log('scope.isCompleted', scope.isCompleted)
+                            saveNoteInfo();
                             return;
                         }
 
                         scope.note.notes = toText(scope.note.notes);
                         scope.note.plainText = true;
-
                     }
 
                     saveNoteInfo();
+                }
+
+                scope.uncheckAll = function() {
+                    scope.note.notes = uncheckAll(scope.note.notes);
+                    saveNoteInfo();
+                }
+
+                function saveNoteInfo() {
+                    scope.note.time = Date.now();
+                    scope.note.section = scope.activeSection;
+                    
+
+                    if (scope.titleNote) {
+                        scope.note.title = scope.titleNote;
+                        
+                    }
+
+                    undate();
+
+                    scope.callbackFn();
+                }
+
+                function undate() {
+                    scope.isNotes = scope.note.notes.length && scope.isChecked;
+                    if (scope.note.notes.forEach) {
+                        scope.isCompleted = isCompleted(scope.note.notes) && scope.isChecked;
+                    }
                 }
 
                 function toText(list) {
@@ -143,6 +176,11 @@
 
                 function toList(text) {
                     const arr = text.split("<br>");
+                    console.log('arr', arr)
+
+                    if (arr.length === 1 && arr[0] === "") {
+                        return [];
+                    }
 
                     return arr.map(function(text) {
                         return {
@@ -157,6 +195,13 @@
                     return list.filter(function(item) {
                         return !item.isCompleted;
                     });
+                }
+
+                function uncheckAll(list) {
+                    return list.map(function(item) {
+                        item.isCompleted = false;
+                        return item;
+                    })
                 }
 
 

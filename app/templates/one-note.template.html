@@ -25,7 +25,19 @@
 	<div class="panel-footer">
 		<label>	
 			<input type="checkbox" ng-model="isChecked" ng-checked="!plainText" ng-change=changeView()>
-			{{ !isChecked ? "text" : "list" }}
+			{{ !isChecked ? "to list" : "to text" }}
 		</label>
+		<br>	
+		<button tyep="button" ng-show="isCompleted" ng-click="uncheckAll()">
+			uncheck all
+		</button>
+		<br>
+		<button tyep="button" ng-show="isNotes" ng-click=deleteAll()>	
+			delete all
+		</button>
+		<br>
+		<button tyep="button" ng-show="isCompleted" ng-click=deleteChecked()>
+			delete checked
+		</button>
 	</div>
 </div>
