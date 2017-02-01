@@ -12,10 +12,7 @@
 
         const vm = this;
         const activeCategory = $stateParams.categoryId;
-        // console.log(activeCategory);
-        const fetchedNotes = fetchNotes;
-        vm.fetchedNotes = fetchedNotes;
-        const notes = fetchedNotes.data.user;
+        const notes = fetchNotes.data.user;
         // console.log('notes in one controller', notes);
 
         if (activeCategory in notes) {
@@ -28,8 +25,13 @@
          return            
         }
 
-        $scope.removeCategory = function removeCategory(name) {
-            const categories = Object.keys(fetchedNotes.data.user);
+        vm.save = function() {
+            console.log("save data");
+            DataService.saveDataToLocalStorage(fetchNotes);
+        }
+
+        vm.removeCategory = function removeCategory(name) {
+            const categories = Object.keys(fetchNotes.data.user);
             console.log('notes before removeCategory', notes);
 
             // console.log(notes)
@@ -51,6 +53,11 @@
             console.log('notes after removeCategory', notes);
 
             $scope.$parent.$broadcast('REMOVE_CATEGORY', 'data');
+        }
+
+        vm.deleteCertainNote = function(id) {
+            notes[activeCategory].splice(findElem(notes[activeCategory], id), 1);
+            DataService.saveDataToLocalStorage(fetchNotes);
         }
     };
 }());

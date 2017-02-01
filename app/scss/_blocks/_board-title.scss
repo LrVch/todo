@@ -1,0 +1,25 @@
+.board-title {
+
+}
+
+
+.board-title-text {
+	display: block;
+	min-height: 20px;
+	font-size: 16px;
+	line-height: 20px;
+    word-break: break-word;
+}
+
+.board-title__area,
+.board-title-text {
+	margin: 0;
+	padding: 5px;
+	border: none;
+	font-weight: 800;
+	background: transparent;
+}
+
+.board-title__area {
+	@extend %no-focuse-res;
+}

@@ -1,3 +1,16 @@
-<div ng-click='edit(note.id, note.section)'>
-	{{ note.notes }}
+<div class=plain-text>
+	<div
+		class="plain-text__text"
+		ng-click='edit(note.id)'
+		id="{{note.id}}"
+		ng-bind-html="note.notes"
+	>
+	</div>
+	<textarea
+		class="plain-text__area"
+		hidden
+		ng-blur="onBlurtext($event, note.id)"
+		id="{{note.id}}">
+	</textarea>
 </div>
+<!-- ng-keypress="addNewByKeyPress($event)" -->

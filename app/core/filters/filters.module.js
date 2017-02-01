@@ -5,6 +5,11 @@
 		.filter('isCompleted', function () {
 		    return function (notes, reverse) {
 		        notes = notes || [];
+		        // console.log('notes', notes)
+		        
+		        if (!notes.filter) {
+		        	return;
+		        }
 
 		        return notes.filter(note => (reverse ? note.isCompleted : !note.isCompleted));
 		    };

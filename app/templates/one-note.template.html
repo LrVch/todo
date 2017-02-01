@@ -1,24 +1,31 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div>
-			<a ng-click="editTitle($event, oneCategory.activeCategory, note.id)" href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
+		<div class="clearfix">
+			<a href="#" class="glyphicon glyphicon-remove pull-right" aria-hidden="true" ng-click="deleteNote($event, note.id)"></a>
+			<small class="">last edited {{ note.time | date }} &nbsp;</small>
 		</div>
 		<div class="board-title">
-			<textarea class="board-title__area" hidden></textarea>
-			<div class="board-title">{{ note.title }}</div>
+			<textarea
+				id="{{note.id}}"
+				class="board-title__area"
+				hidden
+				ng-blur="onChangeTitle(note.id)"
+				ng-keypress="saveOnEnter($event, note.id)"
+				>
+			</textarea>
+			<div id="{{note.id}}" class="board-title-text" ng-click="editTitle(note.id)">{{ note.title }}</div>
 		</div>
-		
 	</div>
 	<div class="panel-body">
 		<div class="content">
-			<!-- {{note | json}} -->
-			<plain-text note="note" ng-show="!isChecked"></plain-text>
-			<list-of-tasks note="note" ng-show="isChecked"></list-of-tasks>
+			<plain-text note="note" callback-fn="saveNoteInfo()" ng-show="!isChecked"></plain-text>
+			<list-of-tasks note="note" callback-fn="saveNoteInfo()" ng-show="isChecked"></list-of-tasks>
 		</div>
 	</div>
 	<div class="panel-footer">
-		
-		<input type="checkbox" ng-model="isChecked" ng-checked="!plainText">
-		{{ !plainText ? "список" : "текст" }}
+		<label>	
+			<input type="checkbox" ng-model="isChecked" ng-checked="!plainText" ng-change=changeView()>
+			{{ !isChecked ? "text" : "list" }}
+		</label>
 	</div>
 </div>

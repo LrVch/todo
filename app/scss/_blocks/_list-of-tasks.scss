@@ -1,0 +1,20 @@
+.list-of-tasks {
+
+}
+
+.list-of-tasks__item-text {
+	min-height: 20px;
+	line-height: 20px;
+    word-break: break-word;
+}
+
+.list-of-tasks__item-area {
+	@extend %no-focuse-res;
+}
+
+.list-of-tasks__item-area,
+.list-of-tasks__item-text {
+	border: none;
+	margin: 0;
+	padding: 5px;
+}

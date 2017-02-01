@@ -1,12 +1,13 @@
 'use strict';
 
-// (function() {
+(function() {
 	angular
 	.module('todoList', [
 		'core',
 		'templates',
-		'ui.router'
+		'ui.router',
+		'ngSanitize'
 	])
-// }());	
+}());	
 
 

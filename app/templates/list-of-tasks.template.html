@@ -1,21 +1,36 @@
-list <br>
-{{ note.notes }}
-
-<!-- <ul class="list-group">
-	<li class="list-group-item" ng-repeat="note in filtered = (board.notes | isCompleted: false)">
+<ul class="list-group list-of-tasks">
+	<li class="list-group-item list-of-tasks__item" ng-repeat="note in filtered = (note.notes | isCompleted: false) track by $index">
 		<div>
-			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true"></a>
-			<a href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a>
+			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, note.id)"></a>
+			<!-- <a href="#" class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></a> -->
 		</div>
-		<a href="#" class="glyphicon glyphicon-ok" aria-hidden="true"></a>
-		{{ note.text }}
+		<input type="checkbox" ng-model="note.isCompleted" ng-change="change(note.id)">
+		<div class="list-of-tasks__item-text" id="{{note.id}}" ng-click="edit(note.id)">{{ note.text}}</div>
+		<textarea
+			class="list-of-tasks__item-area"
+			id="{{note.id}}"
+			hidden
+			ng-blur="saveText(note.id)"
+			ng-keypress="addNoteAfterNote($event, note.id)"
+		></textarea>
+		
 	</li>
-</ul> -->
-<!-- <ul class="list-group completed" >
-	<li class="list-group-item" style="text-decoration: line-through;" ng-repeat="note in filtered = (board.notes | isCompleted: true)">
+	<li class="list-group-item list-of-tasks__item">
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		<div class="list-of-tasks__item-text" id="newItem-001" ng-click="editNew()">
+			добавить
+		</div>
+		<textarea class="list-of-tasks__item-area" id="newItem-001" hidden ng-blur="addNew($event)" ng-keypress="addNewByKeyPress($event)"></textarea>
+	</li>
+</ul>
+<hr style="border-top-color: #000">
+<ul class="list-group completed" >
+	<li class="list-group-item" ng-repeat="note in filtered = (note.notes | isCompleted: true) track by $index">
 		<div>
-			<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true"></a>
+			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, note.id)"></a>
+			<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true" ng-click="fromCompleted($event, note.id)"></a>
 		</div>
-		{{ note.text }}
+		<div style="text-decoration: line-through;" class="list-of-tasks__item-text" id="{{note.id}}" ng-click="edit(note.id)">{{ note.text}}</div>
+		<textarea class="list-of-tasks__item-area" id="{{note.id}}" hidden ng-blur="saveText(note.id)"></textarea>
 	</li>
-</ul> -->
+</ul>

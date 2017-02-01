@@ -5395,13 +5395,23 @@ button.list-group-item-danger.active:focus {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.list-of-tasks__item-area, .plain-text__area, .board-title__area {
+  resize: none;
+  overflow: hidden;
+  transition: height .4s;
+}
+.list-of-tasks__item-area:focus, .plain-text__area:focus, .board-title__area:focus {
+  outline: none;
+}
+
 input:focus,
 button:focus,
 a:focus {
   outline: 0;
 }
 
-.hidden {
+.hidden,
+[hidden] {
   display: none !important;
 }
 
@@ -5545,4 +5555,47 @@ body > svg {
 
 .add-block-button.invisible {
   display: none;
+}
+
+.list-of-tasks__item-text {
+  min-height: 20px;
+  line-height: 20px;
+  word-break: break-word;
+}
+
+.list-of-tasks__item-area,
+.list-of-tasks__item-text {
+  border: none;
+  margin: 0;
+  padding: 5px;
+}
+
+.plain-text__text {
+  min-height: 20px;
+  line-height: 20px;
+  word-break: break-word;
+}
+
+.plain-text__area,
+.plain-text__text {
+  border: none;
+  margin: 0;
+  padding: 5px;
+}
+
+.board-title-text {
+  display: block;
+  min-height: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  word-break: break-word;
+}
+
+.board-title__area,
+.board-title-text {
+  margin: 0;
+  padding: 5px;
+  border: none;
+  font-weight: 800;
+  background: transparent;
 }

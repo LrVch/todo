@@ -8,6 +8,15 @@
     }
 }
 
+%no-focuse-res {
+    resize: none;
+    overflow: hidden;
+    transition: height .4s;
+    &:focus {
+      outline: none; 
+    }
+}
+
 input:focus,
 button:focus,
 a:focus {
@@ -50,7 +59,8 @@ a:focus {
     @extend %no-link;
 }
 
-.hidden {
+.hidden,
+[hidden] {
     display: none !important;
 }
 
