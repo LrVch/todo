@@ -71,6 +71,7 @@ gulp.task("wiredep-bower", function () {
                 "bootstrap-sass": {
                     "main": [
                         "./assets/javascripts/bootstrap/dropdown.js",
+                        "./assets/javascripts/bootstrap/popover.js"
                     ]
                 },
             },

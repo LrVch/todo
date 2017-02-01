@@ -99,16 +99,27 @@
                 }
 
                 scope.changeView = function() {
-                    // if (scope.isChecked) {
-                    //     console.log("to list");
-                    //     console.log( toList(scope.note.notes) );
+                    if (scope.isChecked) {
                         scope.note.notes = toList(scope.note.notes);
                         scope.note.plainText = false;
                     } else {
-                        // console.log("to text")
-                        // console.log( toText(scope.note.notes) );
+                        if ( isCompleted(scope.note.notes) ) {
+                            const confirmarion = confirm("Удалить завершенные?");
+
+                            if (confirmarion) {
+                                const filtered = deleteCompleted(scope.note.notes);
+                                scope.note.notes = toText(filtered);
+                            } else {
+                                scope.note.notes = toText(scope.note.notes);
+                            }
+
+                            scope.note.plainText = true;
+                            return;
+                        }
+
                         scope.note.notes = toText(scope.note.notes);
                         scope.note.plainText = true;
+
                     }
 
                     saveNoteInfo();
@@ -122,7 +133,13 @@
                         count++;
                         return str;
                     }, "");
-                }                
+                }     
+
+                function isCompleted(list) {
+                    return list.some(function(item) {
+                        return item.isCompleted;
+                    });
+                }           
 
                 function toList(text) {
                     const arr = text.split("<br>");
@@ -133,6 +150,12 @@
                             "isCompleted": false,
                             "id": "id" + genId()
                         };
+                    });
+                }
+
+                function deleteCompleted(list) {
+                    return list.filter(function(item) {
+                        return !item.isCompleted;
                     });
                 }
 
