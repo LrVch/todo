@@ -56,7 +56,9 @@
         }
 
         vm.deleteCertainNote = function(id) {
+            console.log(fetchNotes.data.user)
             notes[activeCategory].splice(findElem(notes[activeCategory], id), 1);
+            console.log(fetchNotes.data.user)
             DataService.saveDataToLocalStorage(fetchNotes);
         }
     };

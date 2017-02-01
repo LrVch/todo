@@ -19,7 +19,14 @@
 		    	const today = formatDate(new Date());
 		        notes = notes || [];
 
-		        return notes.filter(note => formatDate(new Date(note.date)) === today);
+		        return notes.filter(note => formatDate(new Date(note.time)) === today);
+		    };
+		})
+		.filter('newFirst', function () {
+		    return function (notes) {
+		        notes = notes || [];
+
+		        return notes.sort((a, b) => b.time - a.time);
 		    };
 		});
 

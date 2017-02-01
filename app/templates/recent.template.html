@@ -2,16 +2,18 @@
 	<h2>Недавние</h2>
 	<div class="row">
 		<div class="col-sm-12">
-		<h2>{{ today }}</h2>
-			<ul class="list-group">
-			  <li class="list-group-item" ng-repeat="note in filtered = (allNotes | isToday)">
-			  	<div>
-			  		<a ui-sref="^.category({categoryId: note.category })" class="label label-default">{{ note.category }}</a> 
-			  		<small>{{ note.date | date }}</small>
-			  		</div>
-			  		{{ note.text }}
-			  </li>
-			</ul>
+		<h2>{{ recent.today }}</h2>
+		<div class="row">
+			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="note in filtered = (recent.todayNotes)">
+				<div> <a ui-sref="^.category({categoryId: note.section })" class="label label-default">{{ note.section }}</a> 
+					<one-note
+						active-section="{{ note.section }}"
+						note="note"
+						callback-fn="recent.save()"
+						delete="recent.deleteCertainNote(id, note.section)">
+					</one-note>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

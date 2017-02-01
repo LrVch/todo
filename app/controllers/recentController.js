@@ -5,34 +5,40 @@
     .module('todoList')
     .controller('RecentController', RecentController);
 
-    RecentController.$inject = ['$scope', 'DataService','fetchNotes', 'isTodayFilter'];
+    RecentController.$inject = ['$scope', 'DataService','fetchNotes', 'isTodayFilter', 'newFirstFilter'];
 
-    function RecentController($scope, DataService, fetchNotes, isTodayFilter) {
+    function RecentController($scope, DataService, fetchNotes, isTodayFilter, newFirstFilter) {
         console.log('RecentController')
+
+        const vm = this;
         const notes = fetchNotes.data.user;
-        const arr = [];
 
-        // console.log('notes', notes)
-        
-        for (let item in notes) {
-            arr.push(notes[item]);
+        init(notes)
+
+        vm.save = function() {
+            console.log("save data in recent");
+            DataService.saveDataToLocalStorage(fetchNotes);
         }
-        const allBlocks = arr.reduce(function(arr, item) {
-            arr.push(...item);
-            return arr;
-        }, []);
-        const allNotesArr = allBlocks.map(function(item) {
-            return item.notes;
-        });
-        const allNotes = allNotesArr.reduce(function(arr, item) {
-            arr.push(...item);
-            return arr;
-        }, []);
 
-        $scope.allNotes = allNotes;
-        const todayNotes = isTodayFilter(allNotes);
-        $scope.today = todayNotes.length ? 'изменены сегодня' : 'изменений не было';
+        vm.deleteCertainNote = function(id, section) {
+            fetchNotes.data.user[section].splice(findElem(fetchNotes.data.user[section], id), 1);
 
-        // console.log(allNotes)
+            init(fetchNotes.data.user);
+
+            DataService.saveDataToLocalStorage(fetchNotes);
+        }
+
+        function init(notes) {
+            const keys = Object.keys(notes);
+
+            const allNotes = keys.reduce((arr, key) => {
+                return arr.concat(notes[key]);
+            }, []);
+
+            vm.allNotes = allNotes;
+            vm.todayNotes = isTodayFilter(allNotes);
+            vm.today = vm.todayNotes.length ? 'изменены сегодня' : 'изменений не было';
+        }
+
     };
 }());
