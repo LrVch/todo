@@ -2,10 +2,36 @@
 
 }
 
+.list-group-item {
+	display: table;
+	vertical-align: top;
+	width: 100%;
+	border: none;
+}
+
+.list-of-tasks__item-cell {
+	display: table-cell;
+	vertical-align: top;
+
+	&:first-child {
+		width: 15px;
+		padding-top: 5px;
+	}
+
+	&:last-child {
+		width: 15px;
+		padding-top: 5px;
+	}
+}
 .list-of-tasks__item-text {
 	min-height: 20px;
 	line-height: 20px;
     word-break: break-word;
+}
+
+.list-of-tasks__item-text--checked {
+	text-decoration: line-through;
+	color: #999;
 }
 
 .list-of-tasks__item-area {

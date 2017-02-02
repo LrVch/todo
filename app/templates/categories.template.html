@@ -1,31 +1,35 @@
 <div class="header">
-{{ todos.categories | json}}
 	<div class="container">
 		<a ui-sref=".recent">
-			<img src="http://vignette2.wikia.nocookie.net/transformers/images/b/bc/Autobot_logo.svg/revision/latest?cb=20130503211304"
+			<img src="http://static.tumblr.com/dfca590769e2c7630fffcd4f073a851e/vmdywfv/AIgmosa4l/tumblr_static_notes_logo_square.jpg"
 			width="80" height="80">
 		</a>
-		<form>
-			<div class="input-group">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" ng-click="addCatetory()">Add Category</button>
-				</span>
-				<input type="text" class="form-control" placeholder="category name" ng-model="categoryName">
+		<div class="row">
+			<div class="col-sm-6">
+				<form>
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button" ng-click="addCatetory()">Add Category</button>
+						</span>
+						<input type="text" class="form-control" placeholder="category name" ng-model="categoryName">
+					</div>
+				</form>
 			</div>
-		</form>
-		<br>
-		<div class="dropdown">
-			<button ng-disabled="todos.categories.length ? false : true" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-			Categories
-			<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-				<li ng-repeat="category in todos.categories">
-					<a ui-sref=".category({categoryId: category })">{{ category }}</a>
-				</li>
-			</ul>
+			<div class="col-sm-6">
+				<div class="dropdown">
+					<button ng-disabled="todos.categories.length ? false : true" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Categories
+					<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li ng-repeat="category in todos.categories">
+							<a ui-sref=".category({categoryId: category })">{{ category }}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<a ui-sref=".all-categories">View all categories</a>
+		<!-- <a ui-sref=".all-categories">View all categories</a> -->
 	</div>
 </div>
 

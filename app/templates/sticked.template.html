@@ -1,0 +1,23 @@
+<div class="container">
+	<h3>{{ title }}</h3>
+	<div class="row">
+		<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="note in sticked">
+			<div>
+				<a ui-sref=".category({categoryId: note.section })" 
+					ng-class="{
+						'label label-primary' : note.section === activeCategory,
+						'label label-default' : note.section !== activeCategory, }">
+					{{ note.section }}
+				</a> 
+				<one-note
+					active-section="{{ note.section }}"
+					note="note"
+					callback-fn="save()"
+					delete="deleteCertainNote(id, note.section)"
+					unstick-fn="unstickNote(id, note.section)"
+					stick-fn="update(id)">
+				</one-note>
+			</div>
+		</div>
+	</div>
+</div>

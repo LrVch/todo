@@ -1,6 +1,6 @@
 <div class="main">
 	<div class="container">
-		<h2 ng-click="oneCategory.removeCategory(oneCategory.activeCategory)">{{ oneCategory.activeCategory }} </h2>
+		<h2 ng-click="oneCategory.removeCategory(oneCategory.activeCategory)" ng-bind="oneCategory.activeCategory"></h2>
 		<div class="input-group">
 			<span class="input-group-btn">
 				<button class="btn btn-default" type="button">add note!</button>
@@ -9,12 +9,15 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="board in oneCategory.boards">
+			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="note in oneCategory.notes">
 				<one-note
 					active-section="{{ oneCategory.activeCategory }}"
-					note="board"
+					note="note"
 					callback-fn="oneCategory.save()"
-					delete="oneCategory.deleteCertainNote(id)">
+					delete="oneCategory.deleteCertainNote(id)"
+					stick-fn="oneCategory.stickFn(id)"
+					unstick-fn="oneCategory.unstickNote(id)"
+					>
 				</one-note>
 			</div>
 		</div>

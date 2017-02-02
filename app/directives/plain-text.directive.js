@@ -37,7 +37,7 @@
 
                     timerId = $interval(function() {
                         area.style.height = area.scrollHeight + "px";
-                        console.log("yes");
+                        // console.log("yes");
                     }, 50);
 
                     area.value = addNewLine(text.innerHTML);
@@ -53,7 +53,7 @@
 
                     $interval.cancel(timerId);
                     timerId = undefined;
-                    console.log(scope)
+                    // console.log(scope)
                     scope.note.notes = addBr(area.value);
 
                     text.hidden = false;

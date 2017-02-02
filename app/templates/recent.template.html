@@ -1,8 +1,8 @@
 <div class="container">
-	<h2>Недавние</h2>
+	<h2>Recent</h2>
 	<div class="row">
 		<div class="col-sm-12">
-		<h2>{{ recent.today }}</h2>
+		<h4>{{ recent.today }}</h4>
 		<div class="row">
 			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="note in filtered = (recent.todayNotes)">
 				<div> <a ui-sref="^.category({categoryId: note.section })" class="label label-default">{{ note.section }}</a> 
@@ -10,7 +10,9 @@
 						active-section="{{ note.section }}"
 						note="note"
 						callback-fn="recent.save()"
-						delete="recent.deleteCertainNote(id, note.section)">
+						delete="recent.deleteCertainNote(id, note.section)"
+						stick-fn="recent.stickFn(id, note.section)"
+						unstick-fn="recent.unstickNote(id, note.section)">
 					</one-note>
 				</div>
 			</div>

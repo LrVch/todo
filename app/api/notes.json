@@ -8,7 +8,8 @@
 				"notes": "Hello I'm a new note,<br>can you edit me?",
 				"plainText": "true",
 				"section": "home",
-				"time": 1485727573976
+				"time": 1485727573976,
+				"sticked": false
 			},
 			{
 				"title": "deed 555",
@@ -16,7 +17,8 @@
 				"notes": "Hello I'm a new note,<br>can you edit me?",
 				"plainText": "true",
 				"section": "home",
-				"time": 1485922972860
+				"time": 1485922972860,
+				"sticked": false
 			},
 			{
 				"title": "movie",
@@ -41,7 +43,8 @@
 				],
 				"plainText": false,
 				"section": "home",
-				"time": 1475923001283
+				"time": 1475923001283,
+				"sticked": false
 			},
 			{
 				"title": "rest",
@@ -49,7 +52,8 @@
 				"notes": "Hello I'm a new note,<br>can you edit me?",
 				"plainText": "true",
 				"section": "home",
-				"time": 1485923009403
+				"time": 1485923009403,
+				"sticked": false
 			},
 			{
 				"title": "complete list",
@@ -74,7 +78,8 @@
 				],
 				"plainText": false,
 				"section": "home",
-				"time": 1485923020937
+				"time": 1485923020937,
+				"sticked": false
 			},
 			{
 				"title": "trololo",
@@ -99,7 +104,8 @@
 				],
 				"plainText": false,
 				"section": "home",
-				"time": 1485950184709
+				"time": 1485950184709,
+				"sticked": false
 			}
 		],
 		"work": [
@@ -120,7 +126,8 @@
 				],
 				"plainText": false,
 				"section": "work",
-				"time": 1485923144096
+				"time": 1485923144096,
+				"sticked": false
 			}
 		],
 		"other": [
@@ -130,7 +137,8 @@
 				"notes": "",
 				"plainText": true,
 				"section": "other",
-				"time": 1485950173109
+				"time": 1485950173109,
+				"sticked": false
 			}
 		]
 	}

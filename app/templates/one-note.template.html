@@ -2,6 +2,11 @@
 	<div class="panel-heading">
 		<div class="clearfix">
 			<a href="#" class="glyphicon glyphicon-remove pull-right" aria-hidden="true" ng-click="deleteNote($event, note.id)"></a>
+
+			<a href="#" ng-show="note.sticked" class="glyphicon glyphicon-heart pull-right" aria-hidden="true" ng-click="unstickNote($event, note.id)">&nbsp;</a>
+
+			<a href="#" ng-show="!note.sticked" class="glyphicon glyphicon-heart-empty pull-right" aria-hidden="true" ng-click="stickNote($event, note.id)">&nbsp;</a>
+
 			<small class="">last edited {{ note.time | date }} &nbsp;</small>
 		</div>
 		<div class="board-title">
@@ -18,26 +23,25 @@
 	</div>
 	<div class="panel-body">
 		<div class="content">
-			<plain-text note="note" callback-fn="saveNoteInfo()" ng-show="!isChecked"></plain-text>
-			<list-of-tasks note="note" callback-fn="saveNoteInfo()" ng-show="isChecked"></list-of-tasks>
+			<plain-text note="note" callback-fn="saveNoteInfo()" ng-show="note.plainText"></plain-text>
+			<list-of-tasks note="note" callback-fn="saveNoteInfo()" ng-show="!note.plainText"></list-of-tasks>
 		</div>
 	</div>
 	<div class="panel-footer">
-		<label>	
-			<input type="checkbox" ng-model="isChecked" ng-checked="!plainText" ng-change=changeView()>
-			{{ !isChecked ? "to list" : "to text" }}
-		</label>
-		<br>	
-		<button tyep="button" ng-show="isCompleted" ng-click="uncheckAll()">
-			uncheck all
-		</button>
+		<div class="btn-group" role="group" aria-label="...">
+			<button class="btn btn-default" type="button" ng-click="change=changeView(note.plainText)">{{ note.plainText ? "list" : "text" }}</button>
+			<button class="btn btn-default" tyep="button" ng-show="isNotesInList(note.plainText, note)" ng-click=deleteAll()>	
+				delete all 
+			</button>
+		</div>
 		<br>
-		<button tyep="button" ng-show="isNotes" ng-click=deleteAll()>	
-			delete all
-		</button>
-		<br>
-		<button tyep="button" ng-show="isCompleted" ng-click=deleteChecked()>
-			delete checked
-		</button>
+		<div class="btn-group" role="group" aria-label="...">	
+			<button class="btn btn-default" tyep="button" ng-show="iscompletedInList(note.plainText, note)" ng-click="uncheckAll()">
+				up all
+			</button>
+			<button class="btn btn-default" tyep="button" ng-show="iscompletedInList(note.plainText, note)" ng-click=deleteChecked()>
+				delete marked
+			</button>
+		</div>
 	</div>
 </div>

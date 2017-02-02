@@ -13,21 +13,21 @@
                 templateUrl: 'templates/init.template.html',
                 controller: 'TodoListController as todos',
                 resolve: {
-				    	fetchNotes: ['DataService', function(DataService) {
-				    		return DataService.fetchNotes();
-				    	}]
-				    }
+			    	fetchNotes: ['DataService', function(DataService) {
+			    		return DataService.fetchNotes();
+			    	}]
+			    }
 	        })
 			.state('app.recent', {
                 url: "/",
                 templateUrl: 'templates/recent.template.html',
                 controller: 'RecentController as recent',
             })
-            .state('app.all-categories', {
-                url: '/all-categories',
-                templateUrl: 'templates/allCategories.template.html',
-                controller: 'AllCategoriesController as allCategories',
-            })
+            // .state('app.all-categories', {
+            //     url: '/all-categories',
+            //     templateUrl: 'templates/allCategories.template.html',
+            //     controller: 'AllCategoriesController as allCategories',
+            // })
             .state('app.category', {
 			    url: '/category/:categoryId',
 			    templateUrl: 'templates/oneCategory.template.html',

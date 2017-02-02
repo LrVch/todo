@@ -2,32 +2,42 @@
 "use strict";
 
     angular
-	.module('todoList')
-	.directive('oneNote', oneNote);
+    .module('todoList')
+    .directive('oneNote', oneNote);
 
-	oneNote.$inject = ['$state', 'DataService', '$interval'];
+    oneNote.$inject = ['$state', 'DataService', '$interval'];
 
-	function oneNote($state, DataService, $interval) {
-		return {
+    function oneNote($state, DataService, $interval) {
+        return {
             restrict: 'E',
             scope: {
               note: '=',
               callbackFn: '&callbackFn',
               deleteFn: '&delete',
-              activeSection: '@'
+              activeSection: '@',
+              stickFn: '&stickFn',
+              unstickFn: '&unstickFn'
             },
             templateUrl: 'templates/one-note.template.html',
             link: function(scope, element, attributes) {
-                // // console.log(scope)
-                scope.plainText = scope.note.plainText;
-                scope.isChecked = !scope.plainText;
-
-                if (scope.isChecked) {
-                    scope.isNotes = scope.note.notes.length && scope.isChecked;
-                    scope.isCompleted = isCompleted(scope.note.notes) && scope.isChecked;
-                }
 
                 let timerId;
+
+                scope.isNotesInList = function(plainText, note) {
+                    if (!plainText && note.notes.length) {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                scope.iscompletedInList = function(plainText, note) {
+                    if (!plainText && isCompleted(note.notes)) {
+                        return true;
+                    }
+
+                    return false;
+                }
 
                 scope.deleteNote = function($event, id) {
                     $event.preventDefault();
@@ -101,11 +111,13 @@
                     saveNoteInfo();
                 }
 
-                scope.changeView = function() {
-                    if (scope.isChecked) {
+                scope.changeView = function(plainText) {
+                    plainText = !plainText;
+
+                    if (!plainText) {
                         scope.note.notes = toList(scope.note.notes);
                         scope.note.plainText = false;
-                        scope.isNotes = scope.note.notes.length;
+                        console.log("list");
                     } else {
                         if ( isCompleted(scope.note.notes) ) {
                             const confirmarion = confirm("Удалить завершенные?");
@@ -118,14 +130,13 @@
                             }
 
                             scope.note.plainText = true;
-                            scope.isCompleted = false;
-                            console.log('scope.isCompleted', scope.isCompleted)
                             saveNoteInfo();
                             return;
                         }
 
                         scope.note.notes = toText(scope.note.notes);
                         scope.note.plainText = true;
+                        console.log("text");
                     }
 
                     saveNoteInfo();
@@ -134,6 +145,20 @@
                 scope.uncheckAll = function() {
                     scope.note.notes = uncheckAll(scope.note.notes);
                     saveNoteInfo();
+                }
+
+                scope.stickNote = function($event, id) {
+                    $event.preventDefault();
+
+                    console.log("stick")
+                    scope.stickFn({id: id});
+                }
+
+                scope.unstickNote = function($event, id) {
+                    $event.preventDefault();
+
+                    console.log("unstick");
+                    scope.unstickFn({id: id});
                 }
 
                 function saveNoteInfo() {
@@ -146,16 +171,10 @@
                         
                     }
 
-                    undate();
-
                     scope.callbackFn();
-                }
 
-                function undate() {
-                    scope.isNotes = scope.note.notes.length && scope.isChecked;
-                    if (scope.note.notes.forEach) {
-                        scope.isCompleted = isCompleted(scope.note.notes) && scope.isChecked;
-                    }
+                    scope.$parent.$parent.$parent.$broadcast('EDIT_TODAY', 'edit today');
+                    // console.log(scope)
                 }
 
                 function toText(list) {
@@ -176,7 +195,6 @@
 
                 function toList(text) {
                     const arr = text.split("<br>");
-                    console.log('arr', arr)
 
                     if (arr.length === 1 && arr[0] === "") {
                         return [];
@@ -206,8 +224,9 @@
 
 
                 // scope.$on('$destroy', function() {
+                //     console.log("delete note")
                 // });
             },
         }
-	}
+    }
 }());
