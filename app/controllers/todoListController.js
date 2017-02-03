@@ -14,12 +14,15 @@
 	  	const vm = this;
 	  	vm.fetchedNotes = fetchedNotes;
 	  	vm.categories = Object.keys(fetchedNotes.data.user);
+	  	// vm.isCategories = vm.categories.length;
 
 	  	// console.log($scope.categories);
 
 	  	$scope.$on('REMOVE_CATEGORY', function(e, data) {
 	  		console.log(data)
 		    vm.categories = Object.keys(fetchedNotes.data.user);
+		    // vm.isCategories = !!vm.categories.length;
+		    // console.log('vm.isCategories', vm.isCategories)
 		});
 	};
 }());

@@ -41,7 +41,19 @@
             DataService.saveDataToLocalStorage(fetchNotes);
         }
 
+        // function checkCategoryFill() {
+        //     return false;
+        // }
+
         vm.removeCategory = function removeCategory(name) {
+            if (notes[activeCategory].length) {
+                const confirmation = confirm("Категория не пуста, всеравно удалить?");
+                if (!confirmation) {
+                    return;
+                }
+            }
+
+
             const categories = Object.keys(fetchNotes.data.user);
             console.log('notes before removeCategory', notes);
 
@@ -55,6 +67,7 @@
                 vm.activeCategory = 'Добавьте категорию';
                 vm.notes = [];
                 vm.showAddButton = false;
+                vm.showAddField = false;
             }
 
             console.log(fetchNotes)
