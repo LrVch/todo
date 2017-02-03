@@ -13,6 +13,8 @@
         const vm = this;
         const activeCategory = $stateParams.categoryId;
         const notes = fetchNotes.data.user;
+        vm.fetchNotes = fetchNotes;
+        console.log(fetchNotes)
         // console.log('notes in one controller', notes);
 
         function removeSticked(notes) {
@@ -25,16 +27,17 @@
             vm.activeCategory = activeCategory;
             // vm.notes = notes[vm.activeCategory];
             vm.notes = removeSticked(notes[vm.activeCategory]);
-            vm.showAddButton = true;          
+            vm.showAddField = true;          
 
         } else {
             vm.activeCategory = 'нет такой категории';
-            vm.showAddButton = false;
+            vm.showAddField = false;
          return            
         }
 
         vm.save = function() {
             console.log("save data");
+            vm.notes = removeSticked(notes[vm.activeCategory]);
             DataService.saveDataToLocalStorage(fetchNotes);
         }
 

@@ -1,0 +1,207 @@
+.add-note {
+	position: relative;
+	max-width: 500px;
+	min-height: 40px;
+	padding: 20px;
+	font-size: 16px;
+    line-height: 18px;
+	background: #b9b9b9;
+	color: #fff;
+	font-weight: bold;
+	box-shadow: 0 0 23px #ccc;
+}
+
+.add-note__mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.add-note__title {
+	@extend %no-focuse-res;
+
+    width: 100%;
+    min-height: 58px;
+    margin-bottom: 5px;
+    padding: 20px;
+    padding-right: 55px;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: bold;
+    box-shadow: 0 0 23px #ccc;
+    background: #fff;
+    overflow: hidden;
+    color: #999;
+    word-break: break-word;
+}
+
+.add-note__content {
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	background: #999;
+}
+
+.add-note__text {
+	@extend %no-focuse-res;
+
+	min-height: 100px;
+	margin: 0;
+	margin-bottom: 5px;
+	padding: 20px;
+    padding: 20px;
+    padding-right: 55px;
+    font-size: 14px;
+    line-height: 16px;
+    box-shadow: 0 0 23px #ccc;
+    background: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+    overflow: hidden;
+
+    &:focus {
+    	// background: red;
+    }
+}
+
+.add-note__list-view {
+	margin-bottom: 5px;
+	box-shadow: 0 0 23px #ccc;
+}
+
+.add-note__list {
+	margin: 0;
+	padding: 0;
+	padding-top: 10px;
+	background: #fff;
+    font-size: 14px;
+    font-weight: normal;
+	color: #999;
+}
+
+.add-note__togle-view {
+	position: absolute;
+	z-index: 1050;
+	right: 10px;
+    top: 20px; 
+    border: none;
+    background: transparent;
+    color: #999;
+
+    &:hover {
+
+    }
+}
+
+.add-note__footer {
+	background: #fff;
+	padding: 5px;
+	box-shadow: 0 0 23px #ccc;
+}
+
+.add-note__done {
+	padding: 5px 10px;
+	border: none;
+	background: #999;
+	color: #fff;
+	font-weight: normal;
+	text-transform: uppercase;
+
+	&:hover {
+		background: #555;
+	}
+}
+
+
+.add-note__list-item {
+	padding-top: 0;
+	padding-bottom: 0;
+
+	&:hover {
+		.add-note__list-item-remove {
+			display: block;
+		}
+	}
+}
+
+.add-note__list-item-remove {
+	display: none;
+	text-decoration: none;
+	color: #999;
+
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: none;
+		color: #555;
+	}
+
+	&:focus {
+		color: #999;
+	}
+}
+
+.add-note__list-item-up {
+	color: #999;
+	text-decoration: none;
+
+	&:hover,
+	&:active,
+	&:focus {
+		text-decoration: none;
+		color: #555;
+	}
+
+	&:focus {
+		color: #999;
+	}
+}
+
+.add-note__list-item-cell {
+	display: table-cell;
+	vertical-align: top;
+
+	&:first-child {
+		width: 15px;
+		padding-top: 5px;
+	}
+
+	&:last-child {
+		width: 15px;
+		padding-top: 5px;
+	}
+}
+
+.add-note__list-item-text {
+
+}
+
+.add-note__list-item-area {
+	@extend %no-focuse-res;
+	width: 100%;
+	min-height: 35px;
+	padding: 10px;
+	line-height: 16px;
+	word-break: break-word;
+}
+
+.add-note__list-item-area--checked {
+    text-decoration: line-through;
+}
+
+.add-note__list-item-area,
+.add-note__list-item-text {
+	border: none;
+	margin: 0;
+}
+
+.add-note__add-new-item {
+	&:before {
+		content: "add item"
+	}
+}

@@ -5,9 +5,9 @@
     .module('todoList')
     .directive('oneNote', oneNote);
 
-    oneNote.$inject = ['$state', 'DataService', '$interval'];
+    oneNote.$inject = ['DataService', '$interval'];
 
-    function oneNote($state, DataService, $interval) {
+    function oneNote( DataService, $interval) {
         return {
             restrict: 'E',
             scope: {

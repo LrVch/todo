@@ -1,0 +1,119 @@
+<div class="add-note clearfix" ">
+	{{ welcomeText }}
+	<div
+		ng-show="!isEdit"
+		ng-click="activate()"
+		class="add-note__mask"></div>
+
+	<!-- <div class="add-note__btns"> -->
+		<!-- <a
+			hidden
+			href="#"
+			class="glyphicon glyphicon-star-empty"
+			ng-click="stickNote($event)"></a> -->
+		<button
+			class="add-note__togle-view"
+			type="button"
+			ng-click="changeView(currentView)">{{ currentView ? 'L' : 'T' }}</button>
+	<!-- </div> -->
+
+	<div
+		class="add-note__content"
+		ng-show="isEdit">
+		
+		<!-- title -->
+		<div
+			class="add-note__title"
+			id="addTitle"
+			ng-bind-html="title"
+			ng-keypress="gotoText($event)"
+			ng-blur="setTitle()"
+			ng-click="manageTitle()"
+			></div>
+
+		<!-- text -->
+		<div
+			ng-show="currentView"
+			class="add-note__text"
+			id="addNoteText"
+			ng-bind-html="text"
+			ng-blur="setPlainText()"
+			tabindex="0"></div>
+
+		<!-- list -->
+		<div
+			ng-show="!currentView"
+			class="add-note__list-view">
+			<ul class="add-note__list">
+				<li
+					class="list-group-item add-note__list-item"
+					ng-repeat="item in filtered = (text | isCompleted: false)  track by $index">
+					<div class="add-note__list-item-cell">
+						<input type="checkbox" ng-model="item.isCompleted" ng-change="changeCompleted(item.id)">
+					</div>
+					<div class="add-note__list-item-cell">
+						<div
+							class="add-note__list-item-area"
+							id="{{item.id}}"
+							ng-blur="saveItem(item.id)"
+							ng-keypress="addItemAfterItem($event, item.id)"
+							ng-click="editItem($event, item.id)"
+							ng-bind-html="item.text"
+						></div>
+					</div>
+					<div class="add-note__list-item-cell" class="clearfix">
+						<a href="#" class="glyphicon glyphicon-remove  pull-right add-note__list-item-remove" aria-hidden="true" ng-click="deleteItemFromList($event, item.id)"></a>
+					</div>
+					
+				</li>
+				<li class="list-group-item add-note__list-item">
+					<div class="add-note__list-item-cell">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</div>
+					<div class="add-note__list-item-cell">
+						<div
+							id="newItem-003"
+							class="add-note__list-item-area add-note__add-new-item"
+							ng-click="editItem($event, 'newItem-003')"
+							ng-keypress="addNewItem($event, 'newItem-003')"></div>
+					</div>
+					<div class="add-note__list-item-cell" class="clearfix">
+					</div>
+				</li>
+			</ul>
+			<hr ng-show="isCompletedInNote" style="border-top-color: #000; margin: 0">
+			<ul class="add-note__list completed" >
+				<li
+					class="list-group-item add-note__list-item"
+					ng-repeat="item in filtered = (text | isCompleted: true)  track by $index">
+					<div class="add-note__list-item-cell">
+						<a href="#" class="glyphicon glyphicon-arrow-up add-note__list-item-up" aria-hidden="true" ng-click="fromCompleted($event, item.id)"></a>
+					</div>
+					<div class="add-note__list-item-cell">
+						<div
+							class="add-note__list-item-area add-note__list-item-area--checked"
+							id="{{item.id}}"
+							ng-blur="saveItem(item.id)"
+							ng-keypress="addItemAfterItem($event, item.id)"
+							ng-click="editItem($event, item.id)"
+						>{{ item.text }}</div>
+					</div>
+					<div class="add-note__list-item-cell">
+						<a href="#" class="glyphicon glyphicon-remove  pull-right add-note__list-item-remove" aria-hidden="true" ng-click="deleteItemFromList($event, item.id)"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		
+		
+		<div class="add-note__footer clearfix">
+			<button
+				class="add-note__done pull-right"
+				ng-show="isEdit"
+				type="button"
+				class="btn btn-default"
+				ng-click="addNote()">Done</button>
+		</div>
+	</div>	
+</div>
