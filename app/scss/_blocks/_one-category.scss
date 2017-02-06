@@ -1,0 +1,35 @@
+.one-category {
+
+}
+
+.one-category__list {
+	padding-top: 15px;
+}
+
+.one-category__list[dnd-list] .dndDraggingSource {
+	display: none;
+}
+
+.one-category__list[dnd-list] .dndPlaceholder {
+	list-style-type: none;
+	min-height: 263px;
+	display: block;
+	// background: red;
+
+	@extend .col-xs-12;
+	@extend .col-sm-4;
+	@extend .col-md-3;
+}
+
+.one-category__note {
+
+}
+
+.one-category__list[dnd-list].dndDragover {
+	border: 1px solid #999;
+}
+
+// .one-category__list[dnd-list] .selected {
+//     background-color: #dff0d8;
+//     color: #3c763d;
+// } 

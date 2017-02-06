@@ -6,7 +6,8 @@
 		'core',
 		'templates',
 		'ui.router',
-		'ngSanitize'
+		'ngSanitize',
+		'dndLists'
 	])
 }());	
 

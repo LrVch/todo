@@ -1,6 +1,6 @@
-<div class="main">
+<div class="main one-category">
 	<div class="container">
-		<h2 ng-click="oneCategory.removeCategory(oneCategory.activeCategory)" ng-bind="oneCategory.activeCategory"></h2>
+		<h2 class="one-category__title" ng-click="oneCategory.removeCategory(oneCategory.activeCategory)" ng-bind="oneCategory.activeCategory"></h2>
 		<add-note
 			ng-show="oneCategory.showAddField"
 			notes="oneCategory.fetchNotes",
@@ -8,8 +8,17 @@
 			save-fn="oneCategory.save()">
 		</add-note>
 		<br>
-		<div class="row">
-			<div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="note in oneCategory.notes track by $index"">
+		<div
+			class="row one-category__list"
+			dnd-list="oneCategory.notes"
+		>
+			<div 
+				ng-repeat="note in oneCategory.notes"
+				class="col-xs-12 col-sm-4 col-md-3 one-category__note"
+				dnd-draggable="note"
+				dnd-moved="oneCategory.notes.splice($index, 1); oneCategory.writeNotesOrder(oneCategory.notes);"
+				dnd-effect-allowed="move"
+				dnd-dragstart="oneCategory.logEvent(event, 'Started to drag an item')">
 				<one-note
 					active-section="{{ oneCategory.activeCategory }}"
 					note="note"
@@ -17,7 +26,7 @@
 					delete="oneCategory.deleteCertainNote(id)"
 					stick-fn="oneCategory.stickFn(id)"
 					unstick-fn="oneCategory.unstickNote(id)"
-					>
+				>
 				</one-note>
 			</div>
 		</div>

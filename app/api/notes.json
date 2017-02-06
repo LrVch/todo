@@ -37,7 +37,7 @@
 					,
 					{
 						"text": "third item",
-						"isCompleted": true,
+						"isCompleted": false,
 						"id": "fdmsakldf9s"
 					}
 				],

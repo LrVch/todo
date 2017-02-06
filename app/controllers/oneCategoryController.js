@@ -14,12 +14,19 @@
         const activeCategory = $stateParams.categoryId;
         const notes = fetchNotes.data.user;
         vm.fetchNotes = fetchNotes;
+        vm.selected = null;
         console.log(fetchNotes)
         // console.log('notes in one controller', notes);
 
         function removeSticked(notes) {
             return notes.filter(function(note) {
                 return !note.sticked;
+            });
+        }
+
+        function getSticked(notes) {
+            return notes.filter(function(note) {
+                return note.sticked;
             });
         }
 
@@ -41,9 +48,24 @@
             DataService.saveDataToLocalStorage(fetchNotes);
         }
 
-        // function checkCategoryFill() {
-        //     return false;
-        // }
+        vm.writeNotesOrder = function(notes) {
+            console.log("writeNotesOrder");
+            console.log(fetchNotes.data.user[activeCategory])
+            console.log(notes)
+            const sticked = getSticked(fetchNotes.data.user[activeCategory])
+            console.log(sticked)
+            // const allNotes = [...sticked, ...notes];
+            const allNotes = sticked.concat(notes);
+            // fetchNotes.data.user[activeCategory] = notes;
+            fetchNotes.data.user[activeCategory] = allNotes;
+            vm.save();
+        }
+
+        vm.logEvent = function(event, mess) {
+            console.log('logEvent', mess)
+            console.log(event)
+            console.log(event.target)
+        }
 
         vm.removeCategory = function removeCategory(name) {
             if (notes[activeCategory].length) {

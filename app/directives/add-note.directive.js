@@ -32,19 +32,21 @@
                 scope.isCompletedInNote = false;
 
                 // document.body.addEventListener("click", function(event) {
-                //     if (!event.target.closest('.add-note')) {
+                //     console.log(event.target.closest('.add-note'))
+                //     if (!!event.target.closest('.add-note')) {
                 //         console.log("close")
-                //         scope.isEdit = false;
+                //         scope.close();
                 //         console.log(scope.isEdit)
                 //     }
-                // });
+                // }, false);
+
+                scope.close = function() {
+                    scope.isEdit = false;
+                    reset();
+                }
 
 
                 scope.activate = function() {
-                    // if (scope.isEdit) {
-                    //     return;
-                    // }
-
                     scope.isEdit = true;
                     scope.currentView = true;
 
@@ -218,8 +220,9 @@
 
                     if (scope.currentView) {
                         text = cleraFromDiv(scope.text);
+                        console.log(text)
                     } else {
-                        text = scope.text;
+                        text = clearListItem(scope.text);
                     }
 
                     if (!text.length) {
@@ -233,7 +236,7 @@
                         "plainText": scope.currentView,
                         "section": scope.section,
                         "time": Date.now(),
-                        "sticked": false
+                        "sticked": scope.sticked
                     });
 
                     scope.saveFn(); //сохранение
@@ -269,6 +272,15 @@
                         return str;
                     }
 
+                    return str
+                        .replace(/\&nbsp\;/gi, "")
+                        .replace(/\amp\;/gi, "")
+                        .replace(/\<\/div\>/gi, "")
+                        .replace(/\<br\>/gi, "")
+                        .replace(/\<div\>/gi, "<br>");
+                }
+
+                function clearString(str) {
                     return str
                         .replace(/\&nbsp\;/gi, "")
                         .replace(/\amp\;/gi, "")
@@ -325,6 +337,15 @@
                 function deleteCompleted(list) {
                     return list.filter(function(item) {
                         return !item.isCompleted;
+                    });
+                }
+
+                function clearListItem(list) {
+                    const resultList = list.slice();
+
+                    return resultList.map(function(item) {
+                        item.text = clearString(item.text);
+                        return item;
                     });
                 }
 
