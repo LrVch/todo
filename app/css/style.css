@@ -5557,6 +5557,23 @@ body > svg {
   display: none;
 }
 
+.list-of-tasks {
+  min-height: 50px;
+  margin-bottom: 0;
+}
+
+.list-of-tasks[dnd-list] .dndDraggingSource {
+  display: none;
+}
+
+.list-of-tasks[dnd-list] .dndPlaceholder {
+  display: block;
+  width: 100%;
+  min-height: 50px !important;
+  list-style-type: none;
+  background: red;
+}
+
 .list-group-item {
   display: table;
   vertical-align: top;
@@ -5719,16 +5736,28 @@ body > svg {
   box-shadow: 0 0 23px #ccc;
 }
 
-.add-note__done {
+.add-note__done,
+.add-note__close {
   padding: 5px 10px;
   border: none;
   background: #999;
   color: #fff;
   font-weight: normal;
   text-transform: uppercase;
+  transition: background .2s;
 }
-.add-note__done:hover {
+.add-note__done:hover,
+.add-note__close:hover {
   background: #555;
+}
+
+.add-note__close {
+  background: transparent;
+  color: #999;
+}
+.add-note__close:hover {
+  background: #999;
+  color: #fff;
 }
 
 .add-note__list-item {

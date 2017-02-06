@@ -14,7 +14,7 @@
         const activeCategory = $stateParams.categoryId;
         const notes = fetchNotes.data.user;
         vm.fetchNotes = fetchNotes;
-        vm.selected = null;
+        vm.allowedTypes = ["note"];
         console.log(fetchNotes)
         // console.log('notes in one controller', notes);
 
@@ -54,9 +54,7 @@
             console.log(notes)
             const sticked = getSticked(fetchNotes.data.user[activeCategory])
             console.log(sticked)
-            // const allNotes = [...sticked, ...notes];
             const allNotes = sticked.concat(notes);
-            // fetchNotes.data.user[activeCategory] = notes;
             fetchNotes.data.user[activeCategory] = allNotes;
             vm.save();
         }
@@ -69,7 +67,7 @@
 
         vm.removeCategory = function removeCategory(name) {
             if (notes[activeCategory].length) {
-                const confirmation = confirm("Категория не пуста, всеравно удалить?");
+                const confirmation = confirm("Категория не пуста, все равно удалить?");
                 if (!confirmation) {
                     return;
                 }

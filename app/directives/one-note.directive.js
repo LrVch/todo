@@ -200,11 +200,14 @@
                         return [];
                     }
 
+                    const type = scope.note.allowedTypes[0]; 
+
                     return arr.map(function(text) {
                         return {
                             "text": text,
                             "isCompleted": false,
-                            "id": "id" + genId()
+                            "id": "id" + genId(),
+                            "type": type
                         };
                     });
                 }

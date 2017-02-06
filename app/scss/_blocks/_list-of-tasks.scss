@@ -1,5 +1,22 @@
 .list-of-tasks {
+	min-height: 50px;
+	margin-bottom: 0;
+}
 
+.list-of-tasks[dnd-list] .dndDraggingSource {
+	display: none;
+}
+
+.list-of-tasks[dnd-list] .dndPlaceholder {
+	display: block;
+	width: 100%;
+	min-height: 50px !important;
+	list-style-type: none;
+	background: red;
+}
+
+.list-of-tasks[dnd-list].dndDragover {
+	// border: 1px solid #999;
 }
 
 .list-group-item {

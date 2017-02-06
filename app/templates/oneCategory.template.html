@@ -11,10 +11,12 @@
 		<div
 			class="row one-category__list"
 			dnd-list="oneCategory.notes"
+			dnd-allowed-types="oneCategory.allowedTypes"
 		>
 			<div 
 				ng-repeat="note in oneCategory.notes"
 				class="col-xs-12 col-sm-4 col-md-3 one-category__note"
+				dnd-type="note.type"
 				dnd-draggable="note"
 				dnd-moved="oneCategory.notes.splice($index, 1); oneCategory.writeNotesOrder(oneCategory.notes);"
 				dnd-effect-allowed="move"

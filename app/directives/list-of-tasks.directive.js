@@ -19,7 +19,23 @@
 
                 // console.log('listOfTasks', scope.note.notes);
 
-                // console.log(scope.note);
+                // console.log('scope.note', scope.note);
+                scope.writeListOrder = function(note) {
+                    console.log("writeListOrder");
+                    console.log(scope.note)
+                    console.log(note)
+                    // const sticked = getSticked(fetchNotes.data.user[activeCategory])
+                    // console.log(sticked)
+                    // const allNotes = sticked.concat(notes);
+                    // fetchNotes.data.user[activeCategory] = allNotes;
+                    // vm.save();
+                }
+
+                scope.logEvent = function(event, mess) {
+                    console.log('logEvent', mess)
+                    console.log(event)
+                    console.log(event.target)
+                }
 
                 scope.change = function(id) {
                     scope.note.notes[findElem(scope.note.notes, id)].isCompleted = true;
@@ -148,18 +164,24 @@
                 }
 
                 function addNewNoteToTheEnd(text) {
+                    const type = scope.note.allowedTypes[0];
+
                     scope.note.notes.push({
                         "text": text,
                         "isCompleted": false,
-                        "id": "id" + genId()
+                        "id": "id" + genId(),
+                        "type": type
                     });
                 }
 
                 function addSiblingNote(parentId, noteId) {
+                    const type = scope.note.allowedTypes[0];
+
                     scope.note.notes.splice(findElem(scope.note.notes, parentId) + 1, 0, {
                         "text": "",
                         "isCompleted": false,
-                        "id": noteId
+                        "id": noteId,
+                        "type": type
                     });
                 }
 

@@ -1,24 +1,38 @@
-<ul class="list-group list-of-tasks">
-	<li class="list-group-item list-of-tasks__item" ng-repeat="note in filtered = (note.notes | isCompleted: false) track by $index">
+<ul
+	class="list-group list-of-tasks"
+	dnd-list="note.notes"
+	dnd-allowed-types="note.allowedTypes"
+	>
+	{{note.allowedTypes}}
+	<li
+		class="list-group-item list-of-tasks__item"
+		ng-repeat="item in filtered = (note.notes | isCompleted: false)"
+		dnd-type="item.type"
+		dnd-draggable="item"
+		dnd-moved="note.notes.splice($index, 1); writeListOrder(note.notes);"
+		dnd-effect-allowed="move"
+		dnd-dragstart="logEvent(event, 'Started to drag an listItem')">
+		{{item.type}}
 		<div class="list-of-tasks__item-cell">
-			<input type="checkbox" ng-model="note.isCompleted" ng-change="change(note.id)">
+			<input type="checkbox" ng-model="item.isCompleted" ng-change="change(item.id)">
 		</div>
 		<div class="list-of-tasks__item-cell">
-			<div class="list-of-tasks__item-text" id="{{note.id}}" ng-click="edit(note.id)">{{ note.text}}</div>
+			<div class="list-of-tasks__item-text" id="{{item.id}}" ng-click="edit(item.id)">{{ item.text}}</div>
 			<textarea
 				class="list-of-tasks__item-area"
-				id="{{note.id}}"
+				id="{{item.id}}"
 				hidden
-				ng-blur="saveText(note.id)"
-				ng-keypress="addNoteAfterNote($event, note.id)"
+				ng-blur="saveText(item.id)"
+				ng-keypress="addNoteAfterNote($event, item.id)"
 			></textarea>
 		</div>
 		<div class="list-of-tasks__item-cell" class="clearfix">
-			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, note.id)"></a>
-		</div>
-		
+			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
+		</div>	
 	</li>
-	<li class="list-group-item list-of-tasks__item">
+</ul>
+<div>
+	<div class="list-group-item list-of-tasks__item">
 		<div class="list-of-tasks__item-cell">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		</div>
@@ -30,8 +44,8 @@
 		</div>
 		<div class="list-of-tasks__item-cell">
 		</div>
-	</li>
-</ul>
+	</div>
+</div>
 <hr style="border-top-color: #000">
 <ul class="list-group completed" >
 	<li class="list-group-item" ng-repeat="note in filtered = (note.notes | isCompleted: true) track by $index">

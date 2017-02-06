@@ -104,16 +104,28 @@
 	box-shadow: 0 0 23px #ccc;
 }
 
-.add-note__done {
+.add-note__done,
+.add-note__close {
 	padding: 5px 10px;
 	border: none;
 	background: #999;
 	color: #fff;
 	font-weight: normal;
 	text-transform: uppercase;
+	transition: background .2s;
 
 	&:hover {
 		background: #555;
+	}
+}
+
+.add-note__close {
+	background: transparent;
+	color: #999;
+
+	&:hover {
+		background: #999;
+		color: #fff;
 	}
 }
 

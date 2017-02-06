@@ -217,26 +217,32 @@
                     // console.log('scope.title', scope.title)
 
                     let text;
+                    const type = genId() + "";
 
                     if (scope.currentView) {
-                        text = cleraFromDiv(scope.text);
+                        text = cleraFromDiv(scope.text); // как текст
                         console.log(text)
                     } else {
-                        text = clearListItem(scope.text);
+                        text = clearListItem(scope.text); // как список
+                        text =  addTypeToListItem(text, type)
+                        console.log(text);
                     }
 
                     if (!text.length) {
                         return;
                     }
+
                     
                     injectNote({ // добавление
                         "title": scope.title === placeHolderTitle ? "" : scope.title,
                         "id": "id" + genId(),
+                        "allowedTypes": [type],
                         "notes": text,
                         "plainText": scope.currentView,
                         "section": scope.section,
                         "time": Date.now(),
-                        "sticked": scope.sticked
+                        "sticked": scope.sticked,
+                        "type": "note"
                     });
 
                     scope.saveFn(); //сохранение
@@ -345,6 +351,15 @@
 
                     return resultList.map(function(item) {
                         item.text = clearString(item.text);
+                        return item;
+                    });
+                }
+
+                function addTypeToListItem(list, type) {
+                    const resultList = list.slice();
+
+                    return resultList.map(function(item) {
+                        item.type = type;
                         return item;
                     });
                 }
