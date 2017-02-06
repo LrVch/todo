@@ -17,6 +17,15 @@
             templateUrl: 'templates/list-of-tasks.template.html',
             link: function(scope, element, attributes) {
 
+                function render() {
+                    scope.unCompleted = Array.isArray(scope.note.notes) ? getUnCompleted(scope.note.notes) : [];
+                    scope.completed = Array.isArray(scope.note.notes) ? getCompleted(scope.note.notes) : [];
+                    // console.log('scope.unCompleted', scope.unCompleted)
+                    // console.log('scope.completed', scope.completed)
+                }
+
+                render();
+
                 // console.log('listOfTasks', scope.note.notes);
 
                 // console.log('scope.note', scope.note);
@@ -24,11 +33,12 @@
                     console.log("writeListOrder");
                     console.log(scope.note)
                     console.log(note)
-                    // const sticked = getSticked(fetchNotes.data.user[activeCategory])
-                    // console.log(sticked)
-                    // const allNotes = sticked.concat(notes);
-                    // fetchNotes.data.user[activeCategory] = allNotes;
-                    // vm.save();
+                    const allNotes = scope.unCompleted.concat(scope.completed);
+                    scope.note.notes = allNotes;
+                    console.log(scope.note.notes)
+                    save();
+                    render();
+                    // render();
                 }
 
                 scope.logEvent = function(event, mess) {
@@ -38,9 +48,11 @@
                 }
 
                 scope.change = function(id) {
+                    console.log(id)
                     scope.note.notes[findElem(scope.note.notes, id)].isCompleted = true;
                     console.log(findElem(scope.note.notes, id));
                     save();
+                    render();
                 };
 
                 scope.fromCompleted = function($event,id) {
@@ -49,6 +61,7 @@
                     scope.note.notes[findElem(scope.note.notes, id)].isCompleted = false;
                     scope.completed = false;
                     save();
+                    render();
                     console.log(findElem(scope.note.notes, id));
                 }; 
 
@@ -57,12 +70,18 @@
                     scope.note.notes.splice(findElem(scope.note.notes, id), 1);
                     console.log(findElem(scope.note.notes, id));
                     save();
+                    render();
                 }; 
 
                 scope.edit = function(id) {
                     const mainElem = element[0]; 
-                    const text = mainElem.querySelector("div#" + id);
-                    const area = mainElem.querySelector("textarea#" + id);
+                    const text = mainElem.querySelector("div[data-id='" + id + "']");
+                    const area = mainElem.querySelector("textarea[data-id='" + id + "']");
+
+                    console.log(id)
+                    console.log(mainElem)
+                    console.log(text)
+                    console.log(area)
 
                     // сделать нормально и вынести в функцию
                     area.style.height = text.offsetHeight + "px";
@@ -76,12 +95,13 @@
 
                     area.value = text.innerHTML;
                     area.focus();
+
                 }; 
 
                 scope.saveText = function(id) {
                     const mainElem = element[0]; 
-                    const text = mainElem.querySelector("div#" + id);
-                    const area = mainElem.querySelector("textarea#" + id);
+                    const text = mainElem.querySelector("div[data-id='" + id + "']");
+                    const area = mainElem.querySelector("textarea[data-id='" + id + "']");
 
                     text.innerHTML = area.value;
                     scope.note.notes[findElem(scope.note.notes, id)].text = area.value;
@@ -89,6 +109,7 @@
                     text.hidden = false;
                     area.hidden = true;
                     save();
+                    render();
                 }
 
                 scope.editNew = function(id) {
@@ -124,6 +145,7 @@
                     addNewNoteToTheEnd(area.value);
                     area.value = "";
                     save();
+                    render();
                 }
 
                 scope.addNewByKeyPress = function($event) {
@@ -140,12 +162,13 @@
                         addNewNoteToTheEnd(area.value);
                         area.value = "";
                         save();
+                        render();
                     }
                 }
 
                 scope.addNoteAfterNote = function($event, id) {
                     const mainElem = element[0]; 
-                    const area = mainElem.querySelector("textarea#" + id);
+                    const area = mainElem.querySelector("textarea[data-id='" + id + "']");
 
                     area.style.height = area.scrollHeight + "px";
                     // console.log(area.offsetHeight)
@@ -158,6 +181,7 @@
                         addSiblingNote(id, newNoteId);
 
                         setTimeout(() => {
+                            console.log("newNoteId", newNoteId)
                             scope.edit(newNoteId);
                         }, 0);
                     }
@@ -188,6 +212,28 @@
                 function save() {
                     scope.callbackFn();
                 }
+
+                function getCompleted(notes) {
+                    return notes.filter(function(note) {
+                        return note.isCompleted;
+                    })
+                }
+
+                function getUnCompleted(notes) {
+                    return notes.filter(function(note) {
+                        return !note.isCompleted;
+                    })
+                }
+
+
+                scope.$on('EDIT_TODAY', function(e, data) {
+                    // console.log(data)
+                    render();
+                    // vm.categories = Object.keys(fetchedNotes.data.user);
+                    // alert("form list")
+                    // vm.isCategories = !!vm.categories.length;
+                    // console.log('vm.isCategories', vm.isCategories)
+                });
             }
 
         }

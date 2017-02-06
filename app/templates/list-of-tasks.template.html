@@ -1,34 +1,37 @@
 <ul
 	class="list-group list-of-tasks"
-	dnd-list="note.notes"
+	dnd-list="unCompleted"
 	dnd-allowed-types="note.allowedTypes"
 	>
-	{{note.allowedTypes}}
+	<!-- {{note.allowedTypes}} -->
 	<li
 		class="list-group-item list-of-tasks__item"
-		ng-repeat="item in filtered = (note.notes | isCompleted: false)"
+		ng-repeat="item in unCompleted"
 		dnd-type="item.type"
 		dnd-draggable="item"
-		dnd-moved="note.notes.splice($index, 1); writeListOrder(note.notes);"
+		dnd-moved="unCompleted.splice($index, 1); writeListOrder(unCompleted);"
 		dnd-effect-allowed="move"
 		dnd-dragstart="logEvent(event, 'Started to drag an listItem')">
-		{{item.type}}
-		<div class="list-of-tasks__item-cell">
-			<input type="checkbox" ng-model="item.isCompleted" ng-change="change(item.id)">
-		</div>
-		<div class="list-of-tasks__item-cell">
-			<div class="list-of-tasks__item-text" id="{{item.id}}" ng-click="edit(item.id)">{{ item.text}}</div>
-			<textarea
-				class="list-of-tasks__item-area"
-				id="{{item.id}}"
-				hidden
-				ng-blur="saveText(item.id)"
-				ng-keypress="addNoteAfterNote($event, item.id)"
-			></textarea>
-		</div>
-		<div class="list-of-tasks__item-cell" class="clearfix">
-			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
-		</div>	
+		<!-- {{item.type}} -->
+		<dnd-nodrag>
+			<div dnd-handle class="handle">:::</div>
+			<div class="list-of-tasks__item-cell">
+				<input type="checkbox" ng-model="item.isCompleted" ng-change="change(item.id)">
+			</div>
+			<div class="list-of-tasks__item-cell">
+				<div class="list-of-tasks__item-text" data-id="{{item.id}}" ng-click="edit(item.id)">{{ item.text}}</div>
+				<textarea
+					class="list-of-tasks__item-area"
+					data-id="{{item.id}}"
+					hidden
+					ng-blur="saveText(item.id)"
+					ng-keypress="addNoteAfterNote($event, item.id)"
+				></textarea>
+			</div>
+			<div class="list-of-tasks__item-cell" class="clearfix">
+				<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
+			</div>	
+		</dnd-nodrag>
 	</li>
 </ul>
 <div>
@@ -40,7 +43,12 @@
 			<div class="list-of-tasks__item-text" id="newItem-001" ng-click="editNew()">
 				добавить
 			</div>
-			<textarea class="list-of-tasks__item-area" id="newItem-001" hidden ng-blur="addNew($event)" ng-keypress="addNewByKeyPress($event)"></textarea>
+			<textarea
+				class="list-of-tasks__item-area"
+				id="newItem-001"
+				hidden
+				ng-blur="addNew($event)"
+				ng-keypress="addNewByKeyPress($event)"></textarea>
 		</div>
 		<div class="list-of-tasks__item-cell">
 		</div>
@@ -48,16 +56,16 @@
 </div>
 <hr style="border-top-color: #000">
 <ul class="list-group completed" >
-	<li class="list-group-item" ng-repeat="note in filtered = (note.notes | isCompleted: true) track by $index">
+	<li class="list-group-item" ng-repeat="item in completed">
 		<div class="list-of-tasks__item-cell">
-			<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true" ng-click="fromCompleted($event, note.id)"></a>
+			<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true" ng-click="fromCompleted($event, item.id)"></a>
 		</div>
 		<div class="list-of-tasks__item-cell">
-			<div class="list-of-tasks__item-text list-of-tasks__item-text--checked" id="{{note.id}}" ng-click="edit(note.id)">{{ note.text}}</div>
-			<textarea class="list-of-tasks__item-area" id="{{note.id}}" hidden ng-blur="saveText(note.id)"></textarea>
+			<div class="list-of-tasks__item-text list-of-tasks__item-text--checked" data-id="{{item.id}}" ng-click="edit(item.id)">{{ item.text}}</div>
+			<textarea class="list-of-tasks__item-area" data-id="{{item.id}}" hidden ng-blur="saveText(item.id)"></textarea>
 		</div>
 		<div class="list-of-tasks__item-cell">
-			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, note.id)"></a>
+			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
 			
 		</div>
 	</li>

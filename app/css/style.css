@@ -5566,17 +5566,46 @@ body > svg {
   display: none;
 }
 
+.list-of-tasks[dnd-list],
+.list-of-tasks[dnd-list] > li {
+  position: relative;
+}
+
+.list-of-tasks[dnd-list] > li {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.list-of-tasks[dnd-list] li dnd-nodrag {
+  display: table;
+  vertical-align: top;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.list-of-tasks .handle {
+  cursor: move;
+  position: absolute;
+  top: 9px;
+  left: 0;
+}
+
 .list-of-tasks[dnd-list] .dndPlaceholder {
   display: block;
   width: 100%;
   min-height: 50px !important;
   list-style-type: none;
-  background: red;
+  border: 2px dashed #aaa;
+  border-radius: 3px;
 }
 
 .list-group-item {
   display: table;
   vertical-align: top;
+  padding-left: 0;
   width: 100%;
   border: none;
 }
@@ -5830,6 +5859,11 @@ body > svg {
 
 .one-category__list {
   padding-top: 15px;
+}
+
+.one-category__list[dnd-list],
+.one-category__list[dnd-list] > div {
+  position: relative;
 }
 
 .one-category__list[dnd-list] .dndDraggingSource {

@@ -6,6 +6,11 @@
 	padding-top: 15px;
 }
 
+.one-category__list[dnd-list],
+.one-category__list[dnd-list] > div {
+	position: relative;
+}
+
 .one-category__list[dnd-list] .dndDraggingSource {
 	display: none;
 }
