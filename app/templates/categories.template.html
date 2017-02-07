@@ -16,21 +16,26 @@
 				</form>
 			</div>
 			<div class="col-sm-6">
-				<div class="dropdown">
-					<button ng-disabled="todos.categories.length ? false : true" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					Categories
-					<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li ng-repeat="category in todos.categories">
+				<div class="btn-group" uib-dropdown is-open="status.isopen">
+				    <button
+				    	type="button"
+				    	class="btn btn-default"
+				    	uib-dropdown-toggle
+				    	ng-disabled="todos.categories.length ? false : true"
+				    >
+				        Categories <span class="caret"></span>
+				    </button>
+			      	<ul
+			      		class="dropdown-menu"
+			      		uib-dropdown-menu role="menu"
+			      		aria-labelledby="single-button"
+			      	>
+				      	<li ng-repeat="category in todos.categories">
 							<a ui-sref=".category({categoryId: category })">{{ category }}</a>
 						</li>
-					</ul>
-				</div>
+			      	</ul>
+			    </div>
 			</div>
 		</div>
-		<!-- <a ui-sref=".all-categories">View all categories</a> -->
 	</div>
 </div>
-
-<!-- disableDropDown -->

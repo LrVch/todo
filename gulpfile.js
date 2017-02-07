@@ -53,19 +53,14 @@ gulp.task("wiredep-bower", function () {
         .pipe(wiredep({
             directory: RS_CONF.path.bowerDir,
             overrides: {
-                "angular": {
-                    "main": [
-                        "./angular.js"
-                    ]
-                },
-                "bootstrap-sass": {
-                    "main": [
-                        "./assets/javascripts/bootstrap/dropdown.js"
-                    ]
-                },
+                // "angular": {
+                //     "main": [
+                //         "./angular.js"
+                //     ]
+                // }
             },
             // exclude: ["bower_components/jquery/"],
-            exclude: ["bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"],
+            exclude: ["bower_components/bootstrap-sass/assets/javascripts/bootstrap.js", "bower_components/jquery/"],
             ignorePath: /^(\.\.\/)*\.\./
         }))
         .pipe(gulp.dest(RS_CONF.path.baseDir));
