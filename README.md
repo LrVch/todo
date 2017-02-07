@@ -1,4 +1,4 @@
-```$git clone git@github.com:LrVch/GalleryAngular.git .```
+```$git clone git@github.com:LrVch/todo.git .```
 
 ```$npm install gulp -g``` install gulp global
 
