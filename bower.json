@@ -14,7 +14,5 @@
     "angular-sanitize": "^1.6.1",
     "angular-drag-and-drop-lists": "^2.1.0"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }

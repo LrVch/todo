@@ -23,6 +23,13 @@
 
                 let timerId;
 
+                scope.dynamicPopover = {
+                    templateUrl: 'templates/popoverTemplate.html',
+                    placement: 'top-left',
+                    isOpen: false
+                };
+
+
                 scope.isNotesInList = function(plainText, note) {
                     if (!plainText && note.notes.length) {
                         return true;
@@ -101,17 +108,25 @@
 
                 scope.saveNoteInfo = saveNoteInfo;
 
-                scope.deleteAll = function() {
+                scope.deleteAll = function($event) {
+                    $event.preventDefault();
+
                     scope.note.notes = [];
                     saveNoteInfo();
+                    scope.dynamicPopover.isOpen = false;
                 }
 
-                scope.deleteChecked = function() {
+                scope.deleteChecked = function($event) {
+                    $event.preventDefault();
+
                     scope.note.notes = deleteCompleted(scope.note.notes);
                     saveNoteInfo();
+                    scope.dynamicPopover.isOpen = false;
                 }
 
-                scope.changeView = function(plainText) {
+                scope.changeView = function($event, plainText) {
+                    $event.preventDefault();
+
                     plainText = !plainText;
 
                     if (!plainText) {
@@ -131,6 +146,7 @@
 
                             scope.note.plainText = true;
                             saveNoteInfo();
+                            scope.dynamicPopover.isOpen = false;
                             return;
                         }
 
@@ -139,12 +155,16 @@
                         console.log("text");
                     }
 
+                    scope.dynamicPopover.isOpen = false;
                     saveNoteInfo();
                 }
 
-                scope.uncheckAll = function() {
+                scope.uncheckAll = function($event) {
+                    $event.preventDefault();
+
                     scope.note.notes = uncheckAll(scope.note.notes);
                     saveNoteInfo();
+                    scope.dynamicPopover.isOpen = false;
                 }
 
                 scope.stickNote = function($event, id) {

@@ -1,0 +1,24 @@
+.note-popover {
+	border-radius: 0;
+}
+
+.note-popover__list {
+	@extend %no-list;
+}
+
+.note-popover__list-item {
+	list-style-type: none;
+}
+
+.note-popover__list-link {
+	display: block;
+	color: #333;
+	text-decoration: none;
+
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: none;
+		color: #333;
+	}
+}

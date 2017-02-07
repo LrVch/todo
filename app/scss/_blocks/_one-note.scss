@@ -1,5 +1,38 @@
 .one-note {
 	border-radius: 0;
+
+	.popover {
+		border-radius: 0;
+
+		.arrow {
+			display: none
+		}
+	}
+
+	.popover-content {
+		padding: 9px 13px;
+	}
+}
+
+.one-note__popover-btn {
+	border: none;
+	background: transparent;
+	color: #999;
+
+	&:focus,
+	&:hover,
+	&:active,
+	&:active:hover {
+		outline: none;
+		background: transparent;
+		box-shadow: none;
+	}
+
+	&:hover {
+		color: #555;
+	}
+
+
 }
 
 .one-note__icon {

@@ -1,0 +1,39 @@
+<div class="note-popover" >
+	<ul class="note-popover__list">
+		<li class="note-popover__list-item">
+			<a
+				href="#"
+				class="note-popover__list-link"
+				ng-click="changeView($event, note.plainText)">
+				{{ note.plainText ? "list" : "text" }}
+			</a>
+		</li>
+		<li class="note-popover__list-item">
+			<a
+				href="#"
+				class="note-popover__list-link"
+				ng-show="isNotesInList(note.plainText, note)"
+		  		ng-click=deleteAll($event)>
+				delete all
+			</a>
+		</li>
+		<li class="note-popover__list-item">
+			<a
+				href="#"
+				class="note-popover__list-link"
+				ng-show="iscompletedInList(note.plainText, note)"
+				ng-click="uncheckAll($event)">
+				up all
+			</a>
+		</li>
+		<li class="note-popover__list-item">
+			<a
+				href="#"
+				class="note-popover__list-link"
+				ng-show="iscompletedInList(note.plainText, note)"
+				ng-click="deleteChecked($event)">
+				delete marked
+			</a>
+		</li>
+	</ul>
+</div>

@@ -28,20 +28,16 @@
 		</div>
 	</div>
 	<div class="panel-footer  one-note__footer">
-		<div class="btn-group" role="group" aria-label="...">
-			<button class="btn btn-default" type="button" ng-click="change=changeView(note.plainText)">{{ note.plainText ? "list" : "text" }}</button>
-			<button class="btn btn-default" tyep="button" ng-show="isNotesInList(note.plainText, note)" ng-click=deleteAll()>	
-				delete all 
-			</button>
-		</div>
-		<br>
-		<div class="btn-group" role="group" aria-label="...">	
-			<button class="btn btn-default" tyep="button" ng-show="iscompletedInList(note.plainText, note)" ng-click="uncheckAll()">
-				up all
-			</button>
-			<button class="btn btn-default" tyep="button" ng-show="iscompletedInList(note.plainText, note)" ng-click=deleteChecked()>
-				delete marked
-			</button>
-		</div>
+		<button
+		 	uib-popover-template="dynamicPopover.templateUrl"
+		 	type="button"
+		 	class="btn btn-default one-note__popover-btn"
+		 	popover-placement="{{dynamicPopover.placement}}"
+		 	popover-animation="true"
+			popover-trigger="'outsideClick'"
+			popover-is-open="dynamicPopover.isOpen"
+		>
+			|||
+		</button>
 	</div>
 </div>
