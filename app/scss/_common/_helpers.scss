@@ -17,6 +17,23 @@
     }
 }
 
+%icon-style {
+    display: none;
+    color: #999;
+    text-decoration: none;
+    transition: color .2s;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none
+    }
+
+    &:hover {
+        color: #555;
+    }
+}
+
 input:focus,
 button:focus,
 a:focus {

@@ -1,3 +1,53 @@
 .one-note {
-	
+	border-radius: 0;
+}
+
+.one-note__icon {
+	@extend %icon-style;
+}
+
+.one-note__header {
+	&:hover {
+		.one-note__header-icon {
+			display: block;
+		}
+	}
+}
+
+.one-note__header-icon {
+
+}
+
+.one-note__date {
+	color: #666;
+}
+
+.one-note__title-text {
+	display: block;
+	min-height: 20px;
+	font-size: 16px;
+	line-height: 20px;
+    word-break: break-word;
+}
+
+.one-note__title-area,
+.one-note__title-text {
+	margin: 0;
+	padding: 5px;
+	padding-left: 0;
+	border: none;
+	font-weight: 800;
+	background: transparent;
+}
+
+.one-note__title-area {
+	@extend %no-focuse-res;
+}
+
+.one-note__body {
+
+}
+
+.one-note__footer {
+
 }

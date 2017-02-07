@@ -32,37 +32,63 @@
 .list-of-tasks .handle {
   cursor: move;
   position: absolute;
-  top: 9px;
+  top: 14px;
   left: 0;
 }
 
 
 .list-of-tasks[dnd-list] .dndPlaceholder {
+	position: relative;
 	display: block;
 	width: 100%;
 	min-height: 50px !important;
 	list-style-type: none;
 	border: 2px dashed #aaa;
 	border-radius: 3px;
+
+	&:before {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		content: "drop here";
+		font-size: 14px;
+		color: #aaa;
+	}
 }
 
 .list-of-tasks[dnd-list].dndDragover {
 	// border: 1px solid #999;
 }
 
-.list-group-item {
+
+.list-of-tasks__item {
 	display: table;
 	vertical-align: top;
 	padding-left: 0;
 	width: 100%;
 	border: none;
+
+	&:hover {
+		.list-of-tasks__icon {
+			display: block;
+		}
+	}
+}
+
+.list-of-tasks__icon {
+	@extend %icon-style;
+}
+
+.list-of-tasks__icon-remove {
+	padding-top: 1px;
 }
 
 .list-of-tasks__item-cell {
 	display: table-cell;
 	vertical-align: top;
 
-	&:first-child {
+	&:nth-child(2) {
 		width: 15px;
 		padding-top: 5px;
 	}

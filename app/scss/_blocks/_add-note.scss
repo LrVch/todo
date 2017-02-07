@@ -84,6 +84,14 @@
 	color: #999;
 }
 
+.add-note__list-item {
+	display: table;
+    vertical-align: top;
+    padding-left: 15px;
+    width: 100%;
+    border: none;
+}
+
 .add-note__togle-view {
 	position: absolute;
 	z-index: 1050;

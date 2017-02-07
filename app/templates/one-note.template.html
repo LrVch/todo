@@ -1,33 +1,33 @@
 <div class="panel panel-default one-note">
-	<div class="panel-heading">
+	<div class="panel-heading one-note__header">
 		<div class="clearfix">
-			<a href="#" class="glyphicon glyphicon-remove pull-right" aria-hidden="true" ng-click="deleteNote($event, note.id)"></a>
+			<a href="#" class="one-note__icon  one-note__header-icon  glyphicon glyphicon-remove pull-right" aria-hidden="true" ng-click="deleteNote($event, note.id)"></a>
 
-			<a href="#" ng-show="note.sticked" class="glyphicon glyphicon-heart pull-right" aria-hidden="true" ng-click="unstickNote($event, note.id)">&nbsp;</a>
+			<a href="#" ng-show="note.sticked" class="one-note__icon  one-note__header-icon  glyphicon glyphicon-heart pull-right" aria-hidden="true" ng-click="unstickNote($event, note.id)">&nbsp;</a>
 
-			<a href="#" ng-show="!note.sticked" class="glyphicon glyphicon-heart-empty pull-right" aria-hidden="true" ng-click="stickNote($event, note.id)">&nbsp;</a>
+			<a href="#" ng-show="!note.sticked" class="one-note__icon  one-note__header-icon  glyphicon glyphicon-heart-empty pull-right" aria-hidden="true" ng-click="stickNote($event, note.id)">&nbsp;</a>
 
-			<small class="">last edited {{ note.time | date }} &nbsp;</small>
+			<small class="one-note__date">last edited {{ note.time | date }} &nbsp;</small>
 		</div>
-		<div class="board-title">
+		<div class="one-note__title">
 			<textarea
 				id="{{note.id}}"
-				class="board-title__area"
+				class="one-note__title-area"
 				hidden
 				ng-blur="onChangeTitle(note.id)"
 				ng-keypress="saveOnEnter($event, note.id)"
 				>
 			</textarea>
-			<div id="{{note.id}}" class="board-title-text" ng-click="editTitle(note.id)">{{ note.title }}</div>
+			<div id="{{note.id}}" class="one-note__title-text" ng-click="editTitle(note.id)">{{ note.title }}</div>
 		</div>
 	</div>
-	<div class="panel-body">
+	<div class="panel-body  one-note__body">
 		<div class="content">
 			<plain-text note="note" callback-fn="saveNoteInfo()" ng-show="note.plainText"></plain-text>
 			<list-of-tasks note="note" callback-fn="saveNoteInfo()" ng-show="!note.plainText"></list-of-tasks>
 		</div>
 	</div>
-	<div class="panel-footer">
+	<div class="panel-footer  one-note__footer">
 		<div class="btn-group" role="group" aria-label="...">
 			<button class="btn btn-default" type="button" ng-click="change=changeView(note.plainText)">{{ note.plainText ? "list" : "text" }}</button>
 			<button class="btn btn-default" tyep="button" ng-show="isNotesInList(note.plainText, note)" ng-click=deleteAll()>	

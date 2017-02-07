@@ -29,13 +29,15 @@
 				></textarea>
 			</div>
 			<div class="list-of-tasks__item-cell" class="clearfix">
-				<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
+				<a href="#" class="list-of-tasks__icon  list-of-tasks__icon-remove  glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
 			</div>	
 		</dnd-nodrag>
 	</li>
 </ul>
 <div>
 	<div class="list-group-item list-of-tasks__item">
+		<div class="list-of-tasks__item-cell">
+		</div>
 		<div class="list-of-tasks__item-cell">
 			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 		</div>
@@ -56,16 +58,18 @@
 </div>
 <hr style="border-top-color: #000">
 <ul class="list-group completed" >
-	<li class="list-group-item" ng-repeat="item in completed">
+	<li class="list-group-item list-of-tasks__item" ng-repeat="item in completed">
 		<div class="list-of-tasks__item-cell">
-			<a href="#" class="glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true" ng-click="fromCompleted($event, item.id)"></a>
+		</div>
+		<div class="list-of-tasks__item-cell">
+			<a href="#" class="list-of-tasks__icon  glyphicon glyphicon-arrow-up  pull-right" aria-hidden="true" ng-click="fromCompleted($event, item.id)"></a>
 		</div>
 		<div class="list-of-tasks__item-cell">
 			<div class="list-of-tasks__item-text list-of-tasks__item-text--checked" data-id="{{item.id}}" ng-click="edit(item.id)">{{ item.text}}</div>
 			<textarea class="list-of-tasks__item-area" data-id="{{item.id}}" hidden ng-blur="saveText(item.id)"></textarea>
 		</div>
 		<div class="list-of-tasks__item-cell">
-			<a href="#" class="glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
+			<a href="#" class="list-of-tasks__icon list-of-tasks__icon-remove  glyphicon glyphicon-remove  pull-right" aria-hidden="true" ng-click="delete($event, item.id)"></a>
 			
 		</div>
 	</li>
