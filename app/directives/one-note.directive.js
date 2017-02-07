@@ -21,7 +21,7 @@
             templateUrl: 'templates/one-note.template.html',
             link: function(scope, element, attributes) {
 
-                let timerId;
+                var timerId;
 
                 scope.dynamicPopover = {
                     templateUrl: 'templates/popoverTemplate.html',
@@ -198,7 +198,7 @@
                 }
 
                 function toText(list) {
-                    let count = 0;
+                    var count = 0;
 
                     return list.reduce(function(str, item) {
                         str += (count >= list.length - 1) ? item.text : item.text + "<br>";

@@ -180,7 +180,7 @@
                         scope.saveText(id);
                         addSiblingNote(id, newNoteId);
 
-                        setTimeout(() => {
+                        setTimeout(function() {
                             console.log("newNoteId", newNoteId)
                             scope.edit(newNoteId);
                         }, 0);

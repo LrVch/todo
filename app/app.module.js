@@ -4,11 +4,11 @@
 	angular
 	.module('todoList', [
 		'core',
-		'templates',
 		'ui.router',
 		'ngSanitize',
 		'dndLists',
-		'ui.bootstrap'
+		'ui.bootstrap',
+		'templates'
 	])
 }());	
 

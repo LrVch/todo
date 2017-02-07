@@ -1,7 +1,7 @@
 function findElem(arr, id) {
-    let index = 0;
+    var index = 0;
 
-    arr.forEach((elem, i) => {
+    arr.forEach(function(elem, i) {
         if (elem.id + "" === id) {index = i};
     });
 
@@ -9,13 +9,13 @@ function findElem(arr, id) {
 }
 
 function addBr(str) {
-    const withBr = JSON.stringify(str).replace(/\\n/gi, "<br>");
+    var withBr = JSON.stringify(str).replace(/\\n/gi, "<br>");
     return JSON.parse(withBr);
 }  
 
 function addNewLine(str) {
     str = ("" + str).replace(/<br>/gi, "\n");
-    const withOutBr = JSON.stringify(str)
+    var withOutBr = JSON.stringify(str)
     // console.log(withOutBr)
     return JSON.parse(withOutBr);
 }  

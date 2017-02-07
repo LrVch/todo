@@ -18,10 +18,10 @@
             templateUrl: 'templates/add-note.template.html',
             link: function(scope, element, attributes) {
                 // console.log(scope.notes)
-                const placeHolderTitle = "Enter a title";
-                const mainElem = element[0];
-                const titleElem = mainElem.querySelector("#addTitle");
-                const plainTextElem = mainElem.querySelector("#addNoteText");
+                var placeHolderTitle = "Enter a title";
+                var mainElem = element[0];
+                var titleElem = mainElem.querySelector("#addTitle");
+                var plainTextElem = mainElem.querySelector("#addNoteText");
 
                 scope.currentView = true; // plain text
                 scope.isEdit = false;
@@ -30,15 +30,6 @@
                 scope.welcomeText = "take a note";
                 scope.sticked = false;
                 scope.isCompletedInNote = false;
-
-                // document.body.addEventListener("click", function(event) {
-                //     console.log(event.target.closest('.add-note'))
-                //     if (!!event.target.closest('.add-note')) {
-                //         console.log("close")
-                //         scope.close();
-                //         console.log(scope.isEdit)
-                //     }
-                // }, false);
 
                 scope.close = function() {
                     scope.isEdit = false;
@@ -69,19 +60,8 @@
                 }
 
                 scope.gotoText = function($event) { 
-                     if ($event.which === 13) {
+                    if ($event.which === 13) {
                         titleElem.contentEditable = false;
-                        // document.body.focus();
-                        // return;
-                        // plainTextElem.focus();
-
-                        // пофиксить добавление первоголишнего дива
-                        // setTimeout(() => {
-                        //     const elem = plainTextElem.querySelector("div");
-                        //     console.log(plainTextElem)/
-                        //     elem.parentNode.removeChild(elem)
-                        // }, 0)
-                         // удалить первый пустой див
                     } 
                 }
 
@@ -216,7 +196,7 @@
                     // console.log('scope.text', scope.text)
                     // console.log('scope.title', scope.title)
 
-                    let text;
+                    var text;
                     const type = genId() + "";
 
                     if (scope.currentView) {
@@ -363,9 +343,7 @@
                         return item;
                     });
                 }
-
-
-            },
+            }
         }
     }
 }());

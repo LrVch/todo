@@ -17,6 +17,8 @@
             htmlDir: baseDir + "/*.html",
             imgDir: baseDir + "/img/**/*",
             imgDestDir: baseDir + "/img/",
+            fontsDir: baseDir + "/fonts/*",
+            bootstrapFontsDir: baseDir + "/fonts/bootstrap/*",
             bowerDir: baseDir + "/bower_components",
             iconDir: baseDir + "/img/",
             extraFiles: [baseDir + "/*.*", "!" + baseDir + "/*.html"],
@@ -28,6 +30,8 @@
             distCssDir: distBaseDir + "/css/",
             distJsDir: distBaseDir + "/js/",
             distImgDir: distBaseDir + "/img/",
+            distFontsDir: distBaseDir + "/fonts/",
+            distBootstrapFontsDir: distBaseDir + "/fonts/bootstrap/",
             distDelDir: [distBaseDir + "/**", "!" + distBaseDir],
             allDistFiles: distBaseDir + "/**/*"
         }

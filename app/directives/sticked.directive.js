@@ -14,7 +14,7 @@
               notes: '='
             },
             templateUrl: 'templates/sticked.template.html',
-            controller: function ($scope, $element) {
+            controller: ['$scope', '$element', function ($scope, $element) {
                 console.log('stickedController');
                 const notes = $scope.notes.data.user;
                 // console.log($scope.notes)
@@ -25,7 +25,7 @@
 
                 function render(notes) {
 		            const keys = Object.keys(notes);
-		            const allNotes = keys.reduce((arr, key) => {
+		            const allNotes = keys.reduce(function(arr, key) {
 		                return arr.concat(notes[key]);
 		            }, []);
 
@@ -71,20 +71,13 @@
 				});
 
 				$scope.$on('EDIT_TODAY', function(e, data) {
-		            // console.log('EDIT_TODAY', data);
-		            // console.log(notes)
-		            // setTimeout(() => {
-
-		            // render(notes);
-		            // }, 0)
-		            // init(fetchNotes.data.user);
 		        });
 
 		        $scope.$on('CHANGE_SECTION', function(e, data) {
 		        	$scope.activeCategory = data.categoryId;
 			  		// console.log('$scope.activeCategory', $scope.activeCategory)
 				});
-            }
+            }]
         }
 	}
 }());

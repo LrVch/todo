@@ -18,7 +18,7 @@
             link: function(scope, element, attributes) {
 
               // console.log('plainText', scope.note.notes)
-                let timerId;
+                var timerId;
 
                 scope.edit = function edit(id) {
                     const mainElem = element[0]; 

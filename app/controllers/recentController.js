@@ -29,7 +29,7 @@
 
         function init(notes) {
             const keys = Object.keys(notes);
-            const allNotes = keys.reduce((arr, key) => {
+            const allNotes = keys.reduce(function(arr, key) {
                 return arr.concat(notes[key]);
             }, []);
 

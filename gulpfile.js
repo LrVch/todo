@@ -58,16 +58,6 @@ gulp.task("wiredep-bower", function () {
                         "./angular.js"
                     ]
                 },
-                "angular-hotkeys": {
-                    "main": [
-                        "./build/hotkeys.js"
-                    ]
-                },
-                "angular-resource": {
-                    "main": [
-                        "./angular-resource.js"
-                    ]
-                },
                 "bootstrap-sass": {
                     "main": [
                         "./assets/javascripts/bootstrap/dropdown.js"
@@ -143,7 +133,7 @@ gulp.task("useref", function () {
 
     return gulp.src(RS_CONF.path.htmlDir)
         .pipe(useref())
-        // .pipe(gulpif("*.js", uglify()))
+        .pipe(gulpif("*.js", uglify()))
         .pipe(gulpif("*.css", cleanCSS({
             compatibility: "ie8"
         })))
@@ -164,6 +154,21 @@ gulp.task("images", function () {
         .pipe(gulp.dest(RS_CONF.path.distImgDir));
 });
 
+// Перенос api
+// ******************************************************
+gulp.task("api", function () {
+    return gulp.src('./app/api/*.*')
+        .pipe(gulp.dest('./dist/api/'));
+});
+
+// Перенос шрифтов
+// ******************************************************
+gulp.task("fonts", function () {
+  gulp.src(RS_CONF.path.bootstrapFontsDir)
+    // .pipe(filter(["*.eot", "*.svg", "*.ttf", "*.woff", "*.woff2"]))
+    .pipe(gulp.dest(RS_CONF.path.distBootstrapFontsDir))
+});
+
 // Вывод размера папки APP
 // ******************************************************
 gulp.task("size-app", function () {
@@ -174,7 +179,7 @@ gulp.task("size-app", function () {
 
 // Сборка и вывод размера папки DIST
 // ******************************************************
-gulp.task("dist", ["useref", "images", "size-app","dist-server"], function () {
+gulp.task("dist", ["useref", "images","api", "fonts", "size-app","dist-server"], function () {
     return gulp.src(RS_CONF.path.allDistFiles).pipe(size({
         title: "DIST size: "
     }));

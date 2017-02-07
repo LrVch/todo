@@ -160,7 +160,6 @@
 				"title": "title",
 				"id": "ytrerty",
 				"allowedTypes": ["list9"],
-				"allowedTypes": ["note"],
 				"notes": "hey",
 				"plainText": true,
 				"section": "other",
